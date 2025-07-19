@@ -1,18 +1,15 @@
 <div align="center">
 
-  <h1>🪟 Windows-MCP</h1>
+  <h1>🪟 Darbot-Windows-MCP</h1>
 
-  <a href="https://github.com/CursorTouch/Windows-MCP/blob/main/LICENSE">
+  <a href="https://github.com/darbotlabs/Darbot-Windows-MCP/blob/main/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   </a>
   <img src="https://img.shields.io/badge/python-3.13%2B-blue" alt="Python">
   <img src="https://img.shields.io/badge/platform-Windows%207–11-blue" alt="Platform: Windows 7 to 11">
-  <img src="https://img.shields.io/github/last-commit/CursorTouch/Windows-MCP" alt="Last Commit">
+  <img src="https://img.shields.io/github/last-commit/darbotlabs/Darbot-Windows-MCP" alt="Last Commit">
   <br>
-  <a href="https://x.com/CursorTouch">
-    <img src="https://img.shields.io/badge/follow-%40CursorTouch-1DA1F2?logo=twitter&style=flat" alt="Follow on Twitter">
-  </a>
-  <a href="https://discord.com/invite/Aue9Yj2VzS">
+  <a href="https://discord.gg/darbotlabs">
     <img src="https://img.shields.io/badge/Join%20on-Discord-5865F2?logo=discord&logoColor=white&style=flat" alt="Join us on Discord">
   </a>
 
@@ -20,7 +17,7 @@
 
 <br>
 
-**Windows MCP** is a lightweight, open-source project that enables seamless integration between AI agents and the Windows operating system. Acting as an MCP server bridges the gap between LLMs and the Windows operating system, allowing agents to perform tasks such as **file navigation, application control, UI interaction, QA testing,** and more.
+**Darbot-Windows MCP** is a lightweight, open-source project that enables seamless integration between AI agents and the Windows operating system. Acting as an MCP server bridges the gap between LLMs and the Windows operating system, allowing agents to perform tasks such as **file navigation, application control, UI interaction, QA testing,** and more.
 
 ## 🎥 Demos
 
@@ -34,7 +31,7 @@
   Interacts natively with Windows UI elements, opens apps, controls windows, simulates user input, and more.
 
 - **Use Any LLM (Vision Optional)**
-   Unlike many automation tools, Windows MCP doesn't rely on any traditional computer vision techniques or specific fine-tuned models; it works with any LLMs, reducing complexity and setup time.
+   Unlike many automation tools, Darbot-Windows MCP doesn't rely on any traditional computer vision techniques or specific fine-tuned models; it works with any LLMs, reducing complexity and setup time.
 
 - **Rich Toolset for UI Automation**  
   Includes tools for basic keyboard, mouse operation and capturing window/UI state.
@@ -61,9 +58,21 @@
 
 - Python 3.13+
 - Anthropic Claude Desktop app or other MCP Clients
-- UV (Package Manager) from Astra, install with `pip install uv`
+- UV (Package Manager) from Astral, install with `pip install uv`
 - DXT (Desktop Extension) from Antropic, install with `npm install -g @anthropic-ai/dxt`
 - Set `English` as the default language in Windows
+
+### NPM Installation (Recommended)
+
+```bash
+npm install @darbotlabs/darbot-windows-mcp
+```
+
+### Manual Installation
+
+1. Clone the repository
+2. Install UV package manager
+3. Run `uv sync` to install dependencies
 
 ## 🏁 Getting Started
 
@@ -71,7 +80,7 @@
 
 1. Navigate to `%USERPROFILE%/.gemini` in File Explorer and open `settings.json`.
 
-2. Add the `windows-mcp` config in the `settings.json` and save it.
+2. Add the `darbot-windows-mcp` config in the `settings.json` and save it.
 
 ```json
 {
@@ -79,11 +88,11 @@
   ...
 //MCP Server Config
   "mcpServers": {
-    "windows-mcp": {
+    "darbot-windows-mcp": {
       "command": "uv",
       "args": [
         "--directory",
-        "<path to the windows-mcp directory>",
+        "<path to the darbot-windows-mcp directory>",
         "run",
         "main.py"
       ]
@@ -99,8 +108,8 @@
 1. Clone the repository.
 
 ```shell
-git clone https://github.com/CursorTouch/Windows-MCP.git
-cd Windows-MCP
+git clone https://github.com/darbotlabs/Darbot-Windows-MCP.git
+cd Darbot-Windows-MCP
 ```
 
 2. Build Desktop Extension `DXT`:
@@ -140,7 +149,7 @@ Claude can access the following tools to interact with Windows:
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=CursorTouch/Windows-MCP&type=Date)](https://www.star-history.com/#CursorTouch/Windows-MCP&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=darbotlabs/Darbot-Windows-MCP&type=Date)](https://www.star-history.com/#darbotlabs/Darbot-Windows-MCP&Date)
 
 ## ⚠️Caution
 
@@ -159,16 +168,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Contributions are welcome! Please see [CONTRIBUTING](CONTRIBUTING) for setup instructions and development guidelines.
 
-Made with ❤️ by [Jeomon George](https://github.com/Jeomon)
+Made with ❤️ by [Darbot Labs](https://github.com/darbotlabs)
 
 ## Citation
 
 ```bibtex
 @software{
-  author       = {George, Jeomon},
-  title        = {Windows-MCP: Lightweight open-source project for integrating LLM agents with Windows},
+  author       = {Darbot Labs},
+  title        = {Darbot-Windows-MCP: Lightweight open-source project for integrating LLM agents with Windows},
   year         = {2024},
   publisher    = {GitHub},
-  url={https://github.com/CursorTouch/Windows-MCP}
+  url={https://github.com/darbotlabs/Darbot-Windows-MCP}
 }
 ```

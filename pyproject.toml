@@ -1,14 +1,14 @@
 [project]
-name = "windows-mcp"
+name = "darbot-windows-mcp"
 version = "0.1.0"
-description = "Lightweight MCP Server for interacting with Windows Operating System."
+description = "Lightweight MCP Server for interacting with Windows Operating System - Darbot Labs Edition."
 authors = [
-    { name = "Jeomon George", email = "jeogeoalukka@gmail.com" }
+    { name = "Darbot Labs", email = "labs@darbot.io" }
 ]
 readme = "README.md"
 license = { file = "LICENSE" }
-urls = { homepage = "https://github.com/CursorTouch" }
-keywords = ["windows", "mcp", "ai", "desktop","ai agent"]
+urls = { homepage = "https://github.com/darbotlabs/Darbot-Windows-MCP" }
+keywords = ["windows", "mcp", "ai", "desktop", "ai agent", "darbot"]
 requires-python = ">=3.13"
 dependencies = [
     "fastmcp>=2.8.1",

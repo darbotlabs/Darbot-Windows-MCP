@@ -42,7 +42,7 @@ async def lifespan(app: FastMCP):
     except Exception:
         watch_cursor.stop()
 
-mcp=FastMCP(name='windows-mcp',instructions=instructions,lifespan=lifespan)
+mcp=FastMCP(name='darbot-windows-mcp',instructions=instructions,lifespan=lifespan)
 
 @mcp.tool(name='Launch-Tool', description='Launch an application from the Windows Start Menu by name (e.g., "notepad", "calculator", "chrome")')
 def launch_tool(name: str) -> str:
