@@ -4,7 +4,7 @@
   "description": "Lightweight MCP Server for interacting with Windows Operating System - Darbot Labs Edition",
   "main": "main.py",
   "scripts": {
-    "install": "pip install uv && uv sync",
+    "install": "python -m venv .venv && .venv\\Scripts\\pip install uv && .venv\\Scripts\\uv sync",
     "start": "uv run main.py",
     "test": "uv run python -c 'from fastmcp import FastMCP; print(\"FastMCP imported successfully\")'"
   },
