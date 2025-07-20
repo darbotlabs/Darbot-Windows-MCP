@@ -17,6 +17,10 @@
 
 <br>
 
+**⚠️ This is a research fork of the original windows-mcp project, adapted and extended for the Darbot ecosystem.**
+
+<br>
+
 **Darbot-Windows MCP** is a lightweight, open-source project that enables seamless integration between AI agents and the Windows operating system. Acting as an MCP server bridges the gap between LLMs and the Windows operating system, allowing agents to perform tasks such as **file navigation, application control, UI interaction, QA testing,** and more.
 
 ## 🎥 Demos
@@ -181,3 +185,7 @@ Made with ❤️ by [Darbot Labs](https://github.com/darbotlabs)
   url={https://github.com/darbotlabs/Darbot-Windows-MCP}
 }
 ```
+
+## Attribution
+
+This project is a fork of and inspired by the original [windows-mcp](https://github.com/CursorTouch/Windows-MCP) project. We extend our gratitude to the original authors for their foundational work that made this research fork possible.
