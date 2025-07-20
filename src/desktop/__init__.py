@@ -68,10 +68,6 @@ class Desktop:
         except subprocess.CalledProcessError as e:
             return (e.stdout.decode('latin1'),e.returncode)
         
-    def is_app_browser(self,node:Control):
-        process=Process(node.ProcessId)
-        return process.name() in BROWSER_NAMES
-        
     def launch_app(self,name:str):
         apps_map=self.get_apps_from_start_menu()
         matched_app=process.extractOne(name,apps_map.keys())
