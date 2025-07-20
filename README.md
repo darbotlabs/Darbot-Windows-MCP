@@ -62,7 +62,7 @@
 
 - Python 3.13+
 - Anthropic Claude Desktop app or other MCP Clients
-- UV (Package Manager) from Astral, install with `pip install uv`
+- UV (Package Manager) from Astral-sh, install with `pip install uv`
 - DXT (Desktop Extension) from Antropic, install with `npm install -g @anthropic-ai/dxt`
 - Set `English` as the default language in Windows
 
