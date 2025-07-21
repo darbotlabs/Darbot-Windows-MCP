@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  darbot-windows-mcp:
+    build: .
+    container_name: darbot-windows-mcp
+    restart: unless-stopped
+    
+    # Environment variables
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+    
+    # Volumes for configuration
+    volumes:
+      # Mount host configuration directory (optional)
+      - ./configs:/app/configs:ro
+      # Mount logs directory
+      - ./logs:/app/logs
+    
+    # Network mode for MCP communication
+    network_mode: host
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "uv", "run", "python", "-c", "from main import mcp; print('healthy')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+        reservations:
+          memory: 256M
+          cpus: '0.25'
+
+  # Optional: Nginx reverse proxy for web-based MCP clients
+  nginx:
+    image: nginx:alpine
+    container_name: darbot-mcp-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - darbot-windows-mcp
+    profiles:
+      - proxy

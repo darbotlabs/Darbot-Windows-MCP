@@ -60,37 +60,65 @@
 
 ### Prerequisites
 
-- Python 3.13+
-- Anthropic Claude Desktop app or other MCP Clients
-- UV (Package Manager) from Astral-sh, install with `pip install uv`
-- DXT (Desktop Extension) from Antropic, install with `npm install -g @anthropic-ai/dxt`
+- Python 3.13+ (3.8+ minimum)
+- UV (Package Manager) from Astral-sh
+- Windows OS (recommended - limited functionality on other platforms)
+- MCP Client: Anthropic Claude Desktop or Gemini CLI
 - Set `English` as the default language in Windows
 
-### NPM Installation (Recommended)
+### 🚀 Quick Install (Recommended)
 
+**Option 1: Interactive Setup Wizard**
+```bash
+git clone https://github.com/darbotlabs/Darbot-Windows-MCP.git
+cd Darbot-Windows-MCP
+python setup_wizard.py
+```
+
+**Option 2: NPM Installation**
 ```bash
 npm install @darbotlabs/darbot-windows-mcp
 ```
 
-### Manual Installation
+**Option 3: Manual Installation**
+```bash
+# Install UV if not already installed
+pip install uv
 
-1. Clone the repository
-2. Install UV package manager
-3. Run `uv sync` to install dependencies
+# Clone and setup
+git clone https://github.com/darbotlabs/Darbot-Windows-MCP.git
+cd Darbot-Windows-MCP
+uv sync
+```
+
+### 🔧 Verification
+```bash
+# Test installation
+python test_bug_bash.py
+
+# Start server (for testing)
+uv run python main.py
+```
 
 ## 🏁 Getting Started
 
-### Gemini CLI
+### Option 1: Setup Wizard (Recommended for Beginners)
+```bash
+python setup_wizard.py
+```
+The wizard will guide you through installation and configuration.
 
-1. Navigate to `%USERPROFILE%/.gemini` in File Explorer and open `settings.json`.
+### Option 2: Manual Configuration
 
-2. Add the `darbot-windows-mcp` config in the `settings.json` and save it.
+#### Claude Desktop
+
+1. Navigate to `%USERPROFILE%/.claude` (Windows) or `~/.claude` (macOS/Linux) and open `claude_desktop_config.json`.
+
+2. Add the `darbot-windows-mcp` config and save:
 
 ```json
 {
   "theme": "Default",
-  ...
-//MCP Server Config
   "mcpServers": {
     "darbot-windows-mcp": {
       "command": "uv",
@@ -105,30 +133,19 @@ npm install @darbotlabs/darbot-windows-mcp
 }
 ```
 
-3. Rerun Gemini CLI in terminal. Enjoy 🥳
+3. Restart Claude Desktop. Enjoy 🥳
 
-### Claude Desktop
+#### Gemini CLI
 
-1. Clone the repository.
+1. Navigate to `%USERPROFILE%/.gemini` and open `settings.json`.
 
-```shell
-git clone https://github.com/darbotlabs/Darbot-Windows-MCP.git
-cd Darbot-Windows-MCP
-```
+2. Add the configuration (similar to Claude Desktop format).
 
-2. Build Desktop Extension `DXT`:
+3. Restart Gemini CLI. Enjoy 🥳
 
-```shell
-npx @anthropic-ai/dxt pack
-```
+#### Advanced Setup
 
-3. Open Claude Desktop:
-
-Go to Claude Desktop: Settings->Extensions->Install Extension (locate the `.dxt` file)-> Install
-
-Finally Enjoy 🥳.
-
-For additional Claude Desktop integration troubleshooting, see the [MCP documentation](https://modelcontextprotocol.io/quickstart/server#claude-for-desktop-integration-issues). The documentation includes helpful tips for checking logs and resolving common issues.
+For Docker, CI/CD, or enterprise deployments, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
 
 ---
 
@@ -158,6 +175,16 @@ Claude can access the following tools to interact with Windows:
 ## ⚠️Caution
 
 This MCP interacts directly with your Windows operating system to perform actions. Use with caution and avoid deploying it in environments where such risks cannot be tolerated.
+
+## 🐛 Troubleshooting
+
+Having issues? Check our comprehensive [TROUBLESHOOTING.md](TROUBLESHOOTING.md) guide.
+
+**Quick fixes:**
+- Run the setup wizard: `python setup_wizard.py`
+- Test installation: `python test_bug_bash.py` 
+- Non-Windows systems: Limited functionality is expected
+- Permission errors: Ensure proper Windows permissions for screen access
 
 ## 📝 Limitations
 

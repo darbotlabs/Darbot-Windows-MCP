@@ -170,3 +170,15 @@ user_data
 
 node_modules
 notebook.ipynb
+
+# Additional ignores for bug bash improvements
+logs/
+configs/
+temp/
+tmp/
+*.backup.json
+test_results/
+test_output/
+
+# Docker
+.dockerignore
