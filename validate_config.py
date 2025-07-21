@@ -224,11 +224,15 @@ class ConfigValidator:
             ], capture_output=True, text=True, cwd=self.project_dir)
             
             if result.returncode != 0:
-                self.issues_found.append(f"Failed to import MCP server: {result.stderr}")
+                error_message = f"Failed to import MCP server: {result.stderr}"
+                self.issues_found.append(error_message)
+                print(f"❌ {error_message}")
                 return False
                 
         except Exception as e:
-            self.issues_found.append(f"Failed to test import: {e}")
+            error_message = f"Failed to test import: {e}"
+            self.issues_found.append(error_message)
+            print(f"❌ {error_message}")
             return False
         
         print("   ✅ Project setup valid")
