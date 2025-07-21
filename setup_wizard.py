@@ -275,7 +275,16 @@ def main():
         if input("Try to fix issues automatically? (y/N): ").strip().lower() == 'y':
             if not install_uv():
                 print("❌ Unable to fix critical issues. Please install UV manually:")
-                print("   pip install uv")
+                print("   Recommended steps:")
+                print("   1. Ensure you have Python and pip installed.")
+                print("   2. Use a virtual environment to avoid permission issues:")
+                print("      python -m venv venv && source venv/bin/activate")
+                print("   3. Install UV using pip:")
+                print("      pip install uv")
+                print("   4. If you encounter network restrictions, try offline installation:")
+                print("      Download the UV package from PyPI and install it locally:")
+                print("      pip install /path/to/uv-package.whl")
+                print("   For more help, visit: https://github.com/darbotlabs/Darbot-Windows-MCP/issues")
                 return 1
         else:
             return 1
