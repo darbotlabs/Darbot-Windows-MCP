@@ -5,7 +5,7 @@
 
 <div align="center">
 
-  <img src="assets/logo.png" alt="Darbot Windows MCP Logo" width="128" height="128">
+  <img src="assets/darbot_logo_stylized.png" alt="Darbot Windows MCP Logo" width="128" height="128">
   
   <h1>🪟 Darbot Windows MCP</h1>
 

@@ -1,5 +1,10 @@
 # 👨‍💻 Development Guide - Darbot Windows MCP
 
+<div align="center">
+  <img src="assets/logo.png" alt="Darbot Windows MCP Logo" width="64" height="64">
+  <h2>👨‍💻 Development Guide</h2>
+</div>
+
 This comprehensive guide covers development setup, adding new tools, contributing code, and understanding the project architecture.
 
 ## 📋 Table of Contents

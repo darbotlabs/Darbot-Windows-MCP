@@ -1,5 +1,10 @@
 # 🚧 Troubleshooting Guide - Darbot Windows MCP
 
+<div align="center">
+  <img src="assets/logo.png" alt="Darbot Windows MCP Logo" width="64" height="64">
+  <h2>🚧 Troubleshooting Guide</h2>
+</div>
+
 This comprehensive troubleshooting guide helps resolve common issues with Darbot Windows MCP installation, configuration, and usage.
 
 ## 📋 Table of Contents

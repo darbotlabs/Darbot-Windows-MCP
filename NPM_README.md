@@ -1,5 +1,11 @@
 # Darbot Windows MCP - NPM Package
 
+<div align="center">
+  <img src="assets/logo.png" alt="Darbot Windows MCP Logo" width="64" height="64">
+  <h2>🪟 Darbot Windows MCP</h2>
+  <p><strong>Professional Windows Desktop Automation for AI Agents</strong></p>
+</div>
+
 This directory contains the npm package that bundles everything needed to install and configure Darbot Windows MCP.
 
 ## What's Included

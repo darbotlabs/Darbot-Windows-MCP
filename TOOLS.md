@@ -1,5 +1,10 @@
 # 🛠️ Tools Reference - Darbot Windows MCP
 
+<div align="center">
+  <img src="assets/logo.png" alt="Darbot Windows MCP Logo" width="64" height="64">
+  <h2>🛠️ Tools Reference</h2>
+</div>
+
 This guide provides comprehensive documentation for all 15 tools available in Darbot Windows MCP, including parameters, usage examples, and best practices.
 
 ## 📋 Table of Contents
