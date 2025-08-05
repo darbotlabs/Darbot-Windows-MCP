@@ -21,11 +21,27 @@
 
 ---
 
-Darbot Windows MCP is part of the extensible Darbot Framework, and open-source **Model Context Protocol (MCP)** server that lets any MCP-aware client (VS Code agent-mode, Claude Desktop, Gemini CLI, custom LLM agents, etc.) control Windows just like a human.
+Darbot Windows MCP is part of the extensible Darbot Framework, an open-source **Model Context Protocol (MCP)** server that lets any MCP-aware client (VS Code agent-mode, Claude Desktop, Gemini CLI, custom LLM agents, etc.) control Windows just like a human.
 
 This enhanced version builds upon the foundational work of [Windows-MCP](https://github.com/CursorTouch/Windows-MCP), adding comprehensive NPM packaging, dual installation methods, professional documentation, and enhanced tooling.
 
 It exposes 15 tools that cover everyday desktop automation—launching apps, clicking, typing, scrolling, getting UI state, and more—while hiding all the Windows Accessibility and input-synthesis complexity behind a simple HTTP/stdio interface.
+
+## 📋 Table of Contents
+
+- [✨ Key Features](#-key-features)
+- [🖥️ Supported OS](#️-supported-os)
+- [📸 Screenshots](#-screenshots)
+- [🛠️ Available Tools](#️-available-tools)
+- [⚡ Quick Start](#-quick-start)
+- [📦 Prerequisites](#-prerequisites)
+- [🎯 Usage Examples](#-usage-examples)
+- [🗜️ Other Clients](#️-other-clients)
+- [🚧 Troubleshooting](#-troubleshooting)
+- [🚧 Limitations](#-limitations)
+- [🤝 Contributing](#-contributing)
+- [📚 Additional Documentation](#-additional-documentation)
+- [🪪 License](#-license)
 
 ### 🆕 Recent Improvements
 
@@ -34,7 +50,8 @@ It exposes 15 tools that cover everyday desktop automation—launching apps, cli
 • **Enhanced Documentation** – Complete setup guides for both installation methods  
 • **Fixed VS Code Integration** – Corrected MCP configuration for seamless VS Code agent mode  
 • **Comprehensive Testing** – All 15 tools validated and working perfectly  
-• **Better Error Handling** – Improved troubleshooting guide with common solutions
+• **Better Error Handling** – Improved troubleshooting guide with common solutions  
+• **Documentation Consolidation** – Organized comprehensive documentation for all user needs
 
 ---
 
@@ -371,9 +388,21 @@ All tools work seamlessly with AI agents, providing full Windows desktop control
 
 ---
 
+## 📚 Additional Documentation
+
+For more detailed information, see our comprehensive documentation:
+
+- **[📋 Installation Guide](INSTALLATION.md)** - Detailed setup instructions for all installation methods
+- **[🛠️ Tools Reference](TOOLS.md)** - Complete documentation of all 15 available tools with examples
+- **[🚧 Troubleshooting Guide](TROUBLESHOOTING.md)** - Common issues and solutions
+- **[👨‍💻 Development Guide](DEVELOPMENT.md)** - Contributing, adding tools, and development workflow
+- **[🤝 Contributing Guidelines](CONTRIBUTING.md)** - How to contribute to the project
+
+---
+
 ## 🤝 Contributing
 
-Pull requests and issues welcome! See [CONTRIBUTING](CONTRIBUTING.md).
+Pull requests and issues welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) and [DEVELOPMENT.md](DEVELOPMENT.md) for detailed guidelines.
 
 ---
 

@@ -1,169 +1,193 @@
-### 1. Update `manifest.json`
-Change the name and description fields.
-
-```json
-{
-  "name": "Darbot Windows MCP",
-  "description": "Lightweight MCP Server that enables Claude to interact with Windows OS"
-}
-```
-
-### 2. Update `README.md`
-Change all instances of "Windows-MCP" to "Darbot Windows MCP". Here’s an updated excerpt:
-
-```markdown
-# 🪟 Darbot Windows MCP
-
-**Darbot Windows MCP** is a lightweight, open-source project that enables seamless integration between AI agents and the Windows operating system. Acting as an MCP server bridges the gap between LLMs and the Windows operating system, allowing agents to perform tasks such as **file navigation, application control, UI interaction, QA testing,** and more.
-
-## Updates
-
-- **🆕 VS Code Agent Mode Support** - Darbot Windows MCP now fully supports VS Code's native MCP integration
-- **🔧 Schema Validation Fixed** - Resolved all MCP JSON schema validation errors for seamless tool integration
-- Try out [Windows-Use](https://github.com/CursorTouch/Windows-Use), the agent build using Darbot Windows MCP.
-- Darbot Windows MCP is now featured in Claude Desktop.
-
-### Supported Operating Systems
-
-- Windows 7
-- Windows 8, 8.1
-- Windows 10
-- Windows 11  
-
-## 🏁 Getting Started
-
-### VS Code Agent Mode
-
-VS Code now has native MCP support through agent mode. Follow these steps to set up Darbot Windows MCP:
-
-1. **Clone the repository:**
-```shell
-git clone https://github.com/CursorTouch/Darbot-Windows-MCP.git
-cd Darbot-Windows-MCP
-```
-
-2. **Install dependencies:**
-```shell
-cd Darbot-Windows-MCP
-uv sync
-```
-
-3. **Configure MCP in VS Code:**
-
-Create or update `.vscode/mcp.json` in your workspace:
-```json
-{
-  "servers": {
-    "darbot-windows-mcp": {
-      "type": "stdio",
-      "command": "uv",
-      "args": [
-        "--directory",
-        "${workspaceFolder}/Darbot-Windows-MCP",
-        "run",
-        "main.py"
-      ]
-    }
-  },
-  "inputs": []
-}
-```
-
-4. **Configure VS Code settings:**
-
-Create or update `.vscode/settings.json`:
-```json
-{
-  "mcp.servers": {
-    "darbot-windows-mcp": {
-      "command": "uv",
-      "args": [
-        "--directory",
-        "${workspaceFolder}/Darbot-Windows-MCP",
-        "run",
-        "main.py"
-      ],
-      "env": {}
-    }
-  }
-}
-```
-
-5. **Restart VS Code** and start using Darbot Windows MCP tools in agent mode! 🚀
-```
-
-### 3. Update `CHANGELOG.md`
-Change all instances of "Windows-MCP" to "Darbot Windows MCP". Here’s an updated excerpt:
-
-```markdown
-## [v0.2.0] - 2025-07-22
-
-### 🎉 Major Improvements
-
-#### ✅ **Fixed MCP Schema Validation Issues**
-- **Fixed JSON Schema Array Type Validation**: Resolved "tool parameters array type must have items" errors
-- **Updated Parameter Types**: Replaced `tuple[int,int]` parameters with separate `x: int, y: int` parameters for better MCP compatibility
-- **Fixed List Type Annotations**: Changed `list[str]` to `List[str]` with proper import
-
-#### 🆕 **Darbot Windows MCP Integration**
-- **Added MCP Configuration**: Created `.vscode/mcp.json` with proper server configuration
-- **Updated VS Code Settings**: Fixed `.vscode/settings.json` to properly configure darbot-windows-mcp server
-- **Full VS Code Agent Mode Support**: All tools now work seamlessly with VS Code's MCP integration
-```
-
-### 4. Update `CONTRIBUTING.md`
-Change all instances of "Windows-MCP" to "Darbot Windows MCP". Here’s an updated excerpt:
-
-```markdown
 # Contributing to Darbot Windows MCP
 
 Thank you for your interest in contributing to Darbot Windows MCP! This document provides guidelines and instructions for contributing to this project.
+
+## 📋 Table of Contents
+
+- [Code of Conduct](#code-of-conduct)
+- [Getting Started](#getting-started)
+- [How to Contribute](#how-to-contribute)
+- [Development Setup](#development-setup)
+- [Pull Request Process](#pull-request-process)
+- [Issue Guidelines](#issue-guidelines)
+- [Documentation Guidelines](#documentation-guidelines)
+
+## Code of Conduct
+
+By participating in this project, you agree to abide by our code of conduct:
+
+- Be respectful and inclusive
+- Focus on constructive feedback
+- Help maintain a positive community
+- Report any unacceptable behavior
+
+## Getting Started
+
+1. **Fork the repository** on GitHub
+2. **Clone your fork** locally:
+   ```bash
+   git clone https://github.com/yourusername/Darbot-Windows-MCP.git
+   cd Darbot-Windows-MCP
+   ```
+3. **Set up development environment** (see [Development Guide](DEVELOPMENT.md))
+4. **Create a branch** for your changes:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+## How to Contribute
+
+### Types of Contributions
+
+- 🐛 **Bug fixes** - Fix issues in existing functionality
+- ✨ **New features** - Add new tools or capabilities
+- 📖 **Documentation** - Improve or add documentation
+- 🧪 **Tests** - Add or improve test coverage
+- 🎨 **Code quality** - Refactoring, performance improvements
+
+### Areas We Need Help
+
+- Adding new Windows automation tools
+- Improving error handling and reliability
+- Cross-platform compatibility testing
+- Documentation improvements
+- Performance optimizations
+
+## Development Setup
+
+See the comprehensive [Development Guide](DEVELOPMENT.md) for detailed setup instructions.
+
+## Pull Request Process
+
+1. **Ensure your fork is up to date:**
+   ```bash
+   git remote add upstream https://github.com/darbotlabs/Darbot-Windows-MCP.git
+   git fetch upstream
+   git checkout main
+   git merge upstream/main
+   ```
+
+2. **Create feature branch:**
+   ```bash
+   git checkout -b feature/descriptive-name
+   ```
+
+3. **Make your changes:**
+   - Follow coding standards
+   - Add tests if applicable
+   - Update documentation
+   - Test thoroughly
+
+4. **Commit with clear messages:**
+   ```bash
+   git add .
+   git commit -m "Add new tool: ToolName-Tool for specific functionality"
+   ```
+
+5. **Push to your fork:**
+   ```bash
+   git push origin feature/descriptive-name
+   ```
+
+6. **Create Pull Request:**
+   - Use descriptive title
+   - Explain what changes were made and why
+   - Reference any related issues
+   - Include testing information
+
+### Pull Request Requirements
+
+- ✅ **Code compiles** without errors
+- ✅ **Tests pass** (if tests exist)
+- ✅ **Documentation updated** for new features
+- ✅ **No breaking changes** unless absolutely necessary
+- ✅ **Clear commit messages**
+- ✅ **Issue references** where applicable
+
+## Issue Guidelines
+
+### Reporting Bugs
+
+When reporting bugs, include:
+
+```
+**Bug Description**
+Clear description of the issue
+
+**Steps to Reproduce**
+1. Step one
+2. Step two
+3. Expected vs actual result
+
+**System Information**
+- Windows version: 
+- Python version:
+- Installation method:
+- VS Code version (if applicable):
+
+**Error Messages**
+Include full error messages and stack traces
+
+**Additional Context**
+Any other relevant information
 ```
 
-### 5. Update `mcp.json`
-Change the server name from "windows-mcp" to "darbot-windows-mcp".
+### Feature Requests
 
-```json
-{
-	"servers": {
-		"darbot-windows-mcp": {
-			"type": "stdio",
-			"command": "uv",
-			"args": [
-				"--directory",
-				"${workspaceFolder}/Darbot-Windows-MCP",
-				"run",
-				"main.py"
-			]
-		}
-	},
-	"inputs": []
-}
-```
+For feature requests, include:
 
-### 6. Update `settings.json`
-Change the server name from "windows-mcp" to "darbot-windows-mcp".
+- **Use case**: Why is this feature needed?
+- **Proposed solution**: How should it work?
+- **Alternatives considered**: Other approaches you've thought about
+- **Implementation ideas**: Technical suggestions if you have them
 
-```json
-{
-  "mcp.servers": {
-    "darbot-windows-mcp": {
-      "command": "uv",
-      "args": [
-        "--directory",
-        "${workspaceFolder}/Darbot-Windows-MCP",
-        "run",
-        "main.py"
-      ],
-      "env": {}
-    }
-  }
-}
-```
+### Good First Issues
 
-### Summary of Changes
-- **Renamed**: All instances of "Windows-MCP" to "Darbot Windows MCP".
-- **Updated**: Configuration files and documentation to reflect the new name.
-- **Ensured**: Consistency across all files.
+Look for issues labeled `good first issue` or `help wanted` if you're new to the project.
 
-After making these changes, ensure to test the application to confirm that everything is functioning correctly under the new name.
+## Documentation Guidelines
+
+### Writing Style
+
+- Use clear, concise language
+- Include code examples where helpful
+- Maintain consistent formatting
+- Update table of contents when needed
+
+### Documentation Types
+
+- **README.md** - Project overview and quick start
+- **INSTALLATION.md** - Detailed setup instructions
+- **TOOLS.md** - Comprehensive tool documentation
+- **TROUBLESHOOTING.md** - Problem-solving guide
+- **DEVELOPMENT.md** - Development and contribution info
+
+### Code Documentation
+
+- Add docstrings to new functions
+- Comment complex logic
+- Include type hints
+- Update tool descriptions in README
+
+## Recognition
+
+Contributors will be recognized in:
+
+- **CONTRIBUTORS.md** file (if created)
+- **Release notes** for significant contributions
+- **GitHub contributors page**
+
+## Getting Help
+
+If you need help contributing:
+
+1. **Read existing documentation** thoroughly
+2. **Search existing issues** for similar problems
+3. **Join discussions** in GitHub Issues/Discussions
+4. **Ask questions** in new issues with `question` label
+
+## Thank You
+
+Every contribution helps make Darbot Windows MCP better for everyone. Whether it's fixing a typo, adding a feature, or helping with documentation, your efforts are appreciated!
+
+For detailed development information, see the [Development Guide](DEVELOPMENT.md).
