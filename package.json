@@ -1,7 +1,7 @@
 {
   "name": "darbot-windows-mcp",
   "version": "1.0.0",
-  "description": "Windows MCP server for desktop automation - includes Python dependencies, UV, and VS Code configuration",
+  "description": "🪟 Darbot Windows MCP - Professional Windows desktop automation server for AI agents via Model Context Protocol (MCP). Control Windows like a human with 15 powerful tools. Includes Python dependencies, UV, and VS Code configuration.",
   "main": "index.js",
   "icon": "assets/darbot_logo.ico",
   "bin": {
@@ -17,13 +17,25 @@
   },
   "keywords": [
     "mcp",
+    "model-context-protocol",
     "windows",
+    "windows-automation",
     "desktop-automation",
+    "desktop-control",
     "ai",
+    "ai-agent",
     "claude",
+    "anthropic",
     "vscode",
     "python",
-    "uv"
+    "uv",
+    "darbot",
+    "windows-tools",
+    "automation",
+    "gui-automation",
+    "accessibility",
+    "computer-vision",
+    "rpa"
   ],
   "author": "DarbotLabs <darbot@timelarp.com>",
   "license": "MIT",

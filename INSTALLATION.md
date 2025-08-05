@@ -1,5 +1,10 @@
 # 📋 Installation Guide - Darbot Windows MCP
 
+<div align="center">
+  <img src="assets/logo.png" alt="Darbot Windows MCP Logo" width="64" height="64">
+  <h2>📋 Installation Guide</h2>
+</div>
+
 This guide provides comprehensive installation instructions for all supported methods to get Darbot Windows MCP running on your system.
 
 ## 📋 Table of Contents

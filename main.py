@@ -1,3 +1,12 @@
+"""
+🪟 Darbot Windows MCP - Professional Windows Desktop Automation
+Desktop automation server for AI agents via Model Context Protocol (MCP)
+
+Copyright (c) 2025 Darbot Labs
+Licensed under MIT License
+https://github.com/darbotlabs/Darbot-Windows-MCP
+"""
+
 from live_inspect.watch_cursor import WatchCursor
 from contextlib import asynccontextmanager
 from fastmcp.utilities.types import Image
@@ -22,8 +31,14 @@ os=system()
 version=release()
 
 instructions=dedent(f'''
-Windows MCP server provides tools to interact directly with the {os} {version} desktop, 
-thus enabling to operate the desktop on the user's behalf.
+🪟 Darbot Windows MCP - Professional Windows Desktop Automation
+Control {os} {version} desktop like a human with 15 powerful automation tools.
+
+This MCP server enables AI agents to interact directly with the Windows desktop,
+providing comprehensive automation capabilities including app launching, UI interaction,
+system commands, clipboard management, and web integration.
+
+Perfect for building AI assistants that can operate your desktop on your behalf.
 ''')
 
 desktop=Desktop()
