@@ -27,7 +27,7 @@ darbot-setup                # Run the interactive setup wizard
 ```shell
 # Test locally first
 npm pack
-npm install -g darbot-windows-mcp-0.1.69.tgz
+npm install -g darbot-windows-mcp
 
 # Publish to NPM
 npm login
