@@ -1,0 +1,15 @@
+{
+  "servers": {
+    "darbot-windows-mcp": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "${workspaceFolder}",
+        "run",
+        "main.py"
+      ]
+    }
+  },
+  "inputs": []
+}

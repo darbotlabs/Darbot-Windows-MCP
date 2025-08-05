@@ -1,0 +1,64 @@
+{
+  "name": "darbot-windows-mcp",
+  "version": "0.1.69",
+  "description": "Windows MCP server for desktop automation - includes Python dependencies, UV, and VS Code configuration",
+  "main": "index.js",
+  "icon": "assets/darbot_logo.ico",
+  "bin": {
+    "darbot-windows-mcp": "./bin/darbot-windows-mcp.js",
+    "darbot-setup": "./bin/setup.js"
+  },
+  "scripts": {
+    "install": "node scripts/install.js",
+    "postinstall": "node scripts/postinstall.js",
+    "setup": "node bin/setup.js",
+    "start": "node bin/darbot-windows-mcp.js",
+    "test": "node scripts/test.js"
+  },
+  "keywords": [
+    "mcp",
+    "windows",
+    "desktop-automation",
+    "ai",
+    "claude",
+    "vscode",
+    "python",
+    "uv"
+  ],
+  "author": "DarbotLabs <darbot@timelarp.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/darbotlabs/Darbot-Windows-MCP",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darbotlabs/Darbot-Windows-MCP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darbotlabs/Darbot-Windows-MCP/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "os": [
+    "win32"
+  ],
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "child_process": "^1.0.2",
+    "fs-extra": "^11.1.1",
+    "inquirer": "^8.2.6",
+    "ora": "^5.4.1",
+    "path": "^0.12.7"
+  },
+  "files": [
+    "bin/",
+    "scripts/",
+    "templates/",
+    "assets/",
+    "main.py",
+    "src/",
+    "requirements.txt",
+    "pyproject.toml",
+    "README.md",
+    "LICENSE"
+  ]
+}

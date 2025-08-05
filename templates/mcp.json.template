@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "darbot-windows-mcp": {
+      "type": "stdio",
+      "command": "{{COMMAND}}",
+      "args": [
+        {{ARGS}}
+      ]
+    }
+  },
+  "inputs": []
+}

@@ -1,0 +1,11 @@
+{
+  "mcp.servers": {
+    "darbot-windows-mcp": {
+      "command": "{{COMMAND}}",
+      "args": [
+        {{ARGS}}
+      ],
+      "env": {}
+    }
+  }
+}

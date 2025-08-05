@@ -1,0 +1,4 @@
+{
+  "name": "Darbot Windows MCP",
+  "description": "Lightweight MCP Server that enables Claude to interact with Windows OS"
+}

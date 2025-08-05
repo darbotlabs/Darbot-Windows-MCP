@@ -1,0 +1,32 @@
+{
+  "name": "Darbot Windows MCP Assets",
+  "version": "0.1.69",
+  "description": "Logo and branding assets for Darbot Windows MCP",
+  "assets": {
+    "logos": {
+      "main": "logo.png",
+      "icon": "darbot_logo.ico",
+      "sizes": {
+        "16x16": "darbot_logo_16.png", 
+        "24x24": "darbot_logo_24.png",
+        "32x32": "darbot_logo_32.png", 
+        "48x48": "darbot_logo_48.png",
+        "64x64": "darbot_logo_64.png"
+      }
+    },
+    "screenshots": [
+      "screenshots/screenshot_1.png",
+      "screenshots/screenshot_2.png", 
+      "screenshots/screenshot_3.png"
+    ],
+    "other_icons": [
+      "npm_logo.png",
+      "nuget_icon.png",
+      "vs_icon.png"
+    ],
+    "demos": [
+      "demo1.mov",
+      "demo2.mov"
+    ]
+  }
+}

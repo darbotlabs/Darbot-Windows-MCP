@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "darbot-windows-mcp": {
+      "command": "darbot-windows-mcp",
+      "args": []
+    }
+  }
+}
