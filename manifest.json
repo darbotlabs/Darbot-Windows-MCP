@@ -1,4 +1,8 @@
 {
-  "name": "Darbot Windows MCP",
-  "description": "Lightweight MCP Server that enables Claude to interact with Windows OS"
+  "name": "🪟 Darbot Windows MCP",
+  "description": "Professional Windows desktop automation server for AI agents via Model Context Protocol (MCP). Control Windows like a human with 15 powerful tools.",
+  "version": "1.0.0",
+  "repository": "https://github.com/darbotlabs/Darbot-Windows-MCP",
+  "author": "Darbot Labs",
+  "license": "MIT"
 }
