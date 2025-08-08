@@ -1,7 +1,7 @@
 # 🛠️ Tools Reference - Darbot Windows MCP
 
 <div align="center">
-  <img src="assets/logo.png" alt="Darbot Windows MCP Logo" width="64" height="64">
+  <img src="assets/darbot_logo_64.png" alt="Darbot Windows MCP Logo" width="64" height="64">
   <h2>🛠️ Tools Reference</h2>
 </div>
 
@@ -527,9 +527,9 @@ Darbot Windows MCP provides 15 specialized tools for Windows desktop automation.
 **Purpose:** Perform vertical or horizontal scrolling at specific coordinates.
 
 **Parameters:**
-- `x` (integer, required): X coordinate for scroll center
-- `y` (integer, required): Y coordinate for scroll center
-- `direction` (string, required): 'up', 'down', 'left', or 'right'
+- `x` (integer, optional): X coordinate for scroll center
+- `y` (integer, optional): Y coordinate for scroll center  
+- `direction` (string, optional): 'up', 'down', 'left', or 'right' (default: 'down')
 - `clicks` (integer, optional): Number of scroll clicks (default: 3)
 
 **Usage Examples:**
@@ -538,12 +538,15 @@ Darbot Windows MCP provides 15 specialized tools for Windows desktop automation.
 // Scroll down in window
 "Scroll down at 400, 300"
 
-// Scroll up with more clicks
+// Scroll up with more clicks  
 "Scroll up at 500, 200 for 5 clicks"
 
 // Horizontal scrolling
 "Scroll right at 300, 400"
 "Scroll left at 300, 400"
+
+// Scroll at current mouse position
+"Scroll down"
 ```
 
 **AI Agent Examples:**

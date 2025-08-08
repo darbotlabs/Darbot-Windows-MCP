@@ -72,7 +72,7 @@ function runMCPServer() {
         
         mcpProcess.on('error', (error) => {
             console.error(chalk.red('❌ Failed to start MCP server:'), error.message);
-            console.error(chalk.red('💡 Make sure Python 3.13+ is installed and in PATH'));
+            console.error(chalk.red('💡 Make sure Python 3.12+ is installed and in PATH'));
             process.exit(1);
         });
     });

@@ -1,12 +1,12 @@
 {
-  "name": "darbot-windows-mcp",
-  "version": "1.0.0",
+  "name": "@darbotlabs/darbot-windows-mcp",
+  "version": "1.1.0",
   "description": "🪟 Darbot Windows MCP - Professional Windows desktop automation server for AI agents via Model Context Protocol (MCP). Control Windows like a human with 15 powerful tools. Includes Python dependencies, UV, and VS Code configuration.",
   "main": "index.js",
   "icon": "assets/darbot_logo.ico",
   "bin": {
-    "darbot-windows-mcp": "./bin/darbot-windows-mcp.js",
-    "darbot-setup": "./bin/setup.js"
+    "darbot-windows-mcp": "bin/darbot-windows-mcp.js",
+    "darbot-setup": "bin/setup.js"
   },
   "scripts": {
     "install": "node scripts/install.js",

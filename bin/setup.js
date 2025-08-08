@@ -52,16 +52,16 @@ class DarbotSetup {
             const pythonResult = await this.runCommand('python', ['--version']);
             const pythonVersion = pythonResult.stdout.trim();
             
-            if (!pythonVersion.includes('3.13') && !pythonVersion.includes('3.14') && !pythonVersion.includes('3.15')) {
-                spinner.fail('Python 3.13+ is required');
-                console.log(chalk.red('Please install Python 3.13 or higher'));
+            if (!pythonVersion.includes('3.12') && !pythonVersion.includes('3.13') && !pythonVersion.includes('3.14') && !pythonVersion.includes('3.15')) {
+                spinner.fail('Python 3.12+ is required');
+                console.log(chalk.red('Please install Python 3.12 or higher'));
                 process.exit(1);
             }
             
             spinner.succeed(`Found ${pythonVersion}`);
         } catch (error) {
             spinner.fail('Python not found');
-            console.log(chalk.red('Please install Python 3.13+ and ensure it\'s in your PATH'));
+            console.log(chalk.red('Please install Python 3.12+ and ensure it\'s in your PATH'));
             process.exit(1);
         }
     }

@@ -110,55 +110,53 @@ It exposes 15 tools that cover everyday desktop automation—launching apps, cli
 
 ---
 
-## ⚡ Quick Start (VS Code Agent Mode)
+## ⚡ Quick Start
 
-### Option A: One-Command Installation (Recommended) 🚀
+### Option A: NPM Global Installation (Recommended) 🚀
 
-Install globally with npm and run the setup wizard:
+**The fastest way to get started with Darbot Windows MCP:**
 
-```shell
-# Install globally
-npm install -g darbot-windows-mcp
+```bash
+# Install globally via NPM
+npm install -g @darbotlabs/darbot-windows-mcp
 
-# Run setup wizard (configures VS Code + Claude Desktop automatically)
+# Run the setup wizard (automatically configures VS Code + Claude Desktop)
 darbot-setup
 
-# Or start the server directly
+# Or start the MCP server directly
 darbot-windows-mcp
 ```
 
-The setup wizard will:
+**What the setup wizard does:**
 
-- ✅ Install Python dependencies (UV or pip)
-- ✅ Configure VS Code MCP integration  
-- ✅ Configure Claude Desktop integration
-- ✅ Test the installation
+- ✅ Installs Python dependencies via UV or pip
+- ✅ Configures VS Code MCP integration  
+- ✅ Configures Claude Desktop integration
+- ✅ Tests the installation
+- ✅ Provides next steps
 
-### Option B: Using UV (Manual Setup)
+### Option B: Manual Installation via UV
 
-1. **Install Prerequisites:**
+**For developers who prefer direct control:**
+
+1. **Install UV package manager:**
    
-   ```shell
-   # On Windows
+   ```bash
+   # On Windows PowerShell
    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
    ```
 
-2. **Clone the repository:**
+2. **Clone and install:**
 
-   ```shell
-   git clone https://github.com/darbotlabs/Darbot-Windows-MCP.git
-   cd Darbot-Windows-MCP
-   ```
-
-3. **Install dependencies:**
-
-   ```shell
+   ```bash
+   git clone https://github.com/darbotlabs/darbot-windows-mcp.git
+   cd darbot-windows-mcp
    uv sync
    ```
 
-4. **Configure MCP in VS Code:**
+3. **Configure VS Code MCP integration:**
 
-   Create or update `.vscode/mcp.json` in the root your workspace:
+   Create/update `.vscode/mcp.json` in your workspace root:
    
    ```json
    {
@@ -168,19 +166,18 @@ The setup wizard will:
          "command": "uv",
          "args": [
            "--directory",
-           "${workspaceFolder}/Darbot-Windows-MCP",
+           "${workspaceFolder}/darbot-windows-mcp",
            "run",
            "main.py"
          ]
        }
-     },
-     "inputs": []
+     }
    }
    ```
 
-5. **Configure VS Code settings:**
+4. **Configure VS Code settings:**
 
-   Create or update `.vscode/settings.json` in the root your workspace:
+   Create/update `.vscode/settings.json` in your workspace root:
    
    ```json
    {
@@ -188,8 +185,8 @@ The setup wizard will:
        "darbot-windows-mcp": {
          "command": "uv",
          "args": [
-           "--directory",
-           "${workspaceFolder}/Darbot-Windows-MCP",
+           "--directory", 
+           "${workspaceFolder}/darbot-windows-mcp",
            "run",
            "main.py"
          ],
@@ -199,38 +196,29 @@ The setup wizard will:
    }
    ```
 
-6. **Restart VS Code** and start using Darbot Windows MCP tools in agent mode! 🚀
+### Option C: Manual Installation via Python/Pip
 
-### Option C: Using Standard Python (Manual Setup)
+**Traditional Python environment setup:**
 
-1. **Install Prerequisites:**
+1. **Prerequisites:** Ensure Python 3.12+ is installed
+
+2. **Clone and install dependencies:**
+
+   ```bash
+   git clone https://github.com/darbotlabs/darbot-windows-mcp.git
+   cd darbot-windows-mcp
    
-   Ensure you have Python 3.13+ installed.
-
-2. **Clone the repository:**
-
-   ```shell
-   git clone https://github.com/darbotlabs/Darbot-Windows-MCP.git
-   cd Darbot-Windows-MCP
-   ```
-
-3. **Create virtual environment and install dependencies:**
-
-   ```shell
+   # Create virtual environment
    python -m venv venv
    venv\Scripts\activate
+   
+   # Install dependencies
    python -m pip install -r requirements.txt
    ```
-   
-   Note: If `requirements.txt` doesn't exist, you can install dependencies manually:
-   
-   ```shell
-   python -m pip install fastmcp pyautogui uiautomation pyperclip requests markdownify humancursor live-inspect
-   ```
 
-4. **Configure MCP in VS Code:**
+3. **Configure VS Code MCP integration:**
 
-   Create or update `.vscode/mcp.json` in the root your workspace:
+   Create/update `.vscode/mcp.json` in your workspace root:
    
    ```json
    {
@@ -239,18 +227,17 @@ The setup wizard will:
          "type": "stdio",
          "command": "python",
          "args": [
-           "${workspaceFolder}/Darbot-Windows-MCP/main.py"
+           "${workspaceFolder}/darbot-windows-mcp/main.py"
          ],
-         "cwd": "${workspaceFolder}/Darbot-Windows-MCP"
+         "cwd": "${workspaceFolder}/darbot-windows-mcp"
        }
-     },
-     "inputs": []
+     }
    }
    ```
 
-5. **Configure VS Code settings:**
+4. **Configure VS Code settings:**
 
-   Create or update `.vscode/settings.json` in the root your workspace:
+   Create/update `.vscode/settings.json` in your workspace root:
    
    ```json
    {
@@ -258,16 +245,20 @@ The setup wizard will:
        "darbot-windows-mcp": {
          "command": "python",
          "args": [
-           "${workspaceFolder}/Darbot-Windows-MCP/main.py"
+           "${workspaceFolder}/darbot-windows-mcp/main.py"
          ],
-         "cwd": "${workspaceFolder}/Darbot-Windows-MCP",
+         "cwd": "${workspaceFolder}/darbot-windows-mcp",
          "env": {}
        }
      }
    }
    ```
 
-6. **Restart VS Code** and start using Darbot Windows MCP tools in agent mode! 🚀
+**After any installation method:**
+
+1. **Restart VS Code** to load the MCP server
+2. **Test the tools** in VS Code agent mode
+3. **Start automating!** 🚀
 
 ---
 
@@ -414,5 +405,5 @@ MIT – © 2025 Darbot at Darbot Labs / contributors
 
 This project is based on and extends the original [Windows-MCP](https://github.com/CursorTouch/Windows-MCP) repository by CursorTouch. We acknowledge and thank the original contributors for their foundational work in Windows desktop automation through the Model Context Protocol.
 
-**Original Repository:** https://github.com/CursorTouch/Windows-MCP  
+**Original Repository:** [Windows-MCP](https://github.com/CursorTouch/Windows-MCP)  
 **Enhancements by Darbot Labs:** NPM packaging, dual installation methods, enhanced documentation, professional branding, setup wizards, and comprehensive testing.

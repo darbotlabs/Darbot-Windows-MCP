@@ -38,6 +38,10 @@ ENV/
 env.bak/
 venv.bak/
 
+# UV
+.uv/
+uv.lock
+
 # IDE
 .vscode/settings.json
 .idea/
@@ -61,3 +65,7 @@ Thumbs.db
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+# Package files
+*.tgz
+*.tar.gz

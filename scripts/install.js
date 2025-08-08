@@ -49,9 +49,9 @@ async function install() {
         const result = await runCommand('python', ['--version']);
         const version = result.stdout.trim();
         
-        if (!version.includes('3.13') && !version.includes('3.14') && !version.includes('3.15')) {
-            spinner.fail('Python 3.13+ is required');
-            console.log(chalk.red('Please install Python 3.13 or higher'));
+        if (!version.includes('3.12') && !version.includes('3.13') && !version.includes('3.14') && !version.includes('3.15')) {
+            spinner.fail('Python 3.12+ is required');
+            console.log(chalk.red('Please install Python 3.12 or higher'));
             console.log(chalk.cyan('Download from: https://www.python.org/downloads/'));
             process.exit(1);
         }
@@ -59,7 +59,7 @@ async function install() {
         spinner.succeed(`Found ${version}`);
     } catch (error) {
         spinner.fail('Python not found');
-        console.log(chalk.red('Please install Python 3.13+ and ensure it\'s in your PATH'));
+        console.log(chalk.red('Please install Python 3.12+ and ensure it\'s in your PATH'));
         console.log(chalk.cyan('Download from: https://www.python.org/downloads/'));
         process.exit(1);
     }

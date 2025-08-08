@@ -1,16 +1,18 @@
-"""
-🪟 Darbot Windows MCP - Professional Windows Desktop Automation
-Desktop automation server for AI agents via Model Context Protocol (MCP)
-
-Copyright (c) 2025 Darbot Labs
-Licensed under MIT License
-https://github.com/darbotlabs/Darbot-Windows-MCP
-"""
-
-from live_inspect.watch_cursor import WatchCursor
+try:
+    from live_inspect.watch_cursor import WatchCursor
+except Exception:
+    class WatchCursor:  # Fallback no-op when live_inspect isn't available
+        def start(self):
+            pass
+        def stop(self):
+            pass
 from contextlib import asynccontextmanager
-from fastmcp.utilities.types import Image
-from humancursor import SystemCursor
+try:
+    from humancursor import SystemCursor
+except Exception:
+    class SystemCursor:  # Fallback stub when humancursor isn't available
+        def __init__(self, *args, **kwargs):
+            pass
 from platform import system, release
 from markdownify import markdownify
 from src.desktop import Desktop
@@ -31,14 +33,8 @@ os=system()
 version=release()
 
 instructions=dedent(f'''
-🪟 Darbot Windows MCP - Professional Windows Desktop Automation
-Control {os} {version} desktop like a human with 15 powerful automation tools.
-
-This MCP server enables AI agents to interact directly with the Windows desktop,
-providing comprehensive automation capabilities including app launching, UI interaction,
-system commands, clipboard management, and web integration.
-
-Perfect for building AI assistants that can operate your desktop on your behalf.
+Windows MCP server provides tools to interact directly with the {os} {version} desktop, 
+thus enabling to operate the desktop on the user's behalf.
 ''')
 
 desktop=Desktop()
@@ -127,14 +123,14 @@ def click_tool(x: int, y: int, button:Literal['left','right','middle']='left',cl
     return f'{num_clicks.get(clicks)} {button} Clicked on {control.Name} Element with ControlType {control.ControlTypeName} at ({x},{y}).'
 
 @mcp.tool(name='Type-Tool',description='Type text into input fields, text areas, or focused elements. Set clear=True to replace existing text, False to append. Click on target element coordinates first.')
-def type_tool(x: int, y: int, text:str,clear:bool=False):
+def type_tool(x: int, y: int, text:str,clear:bool=False) -> str:
     pg.click(x=x, y=y)
     control=desktop.get_element_under_cursor()
     if clear:  # Fixed: compare boolean directly instead of string
         pg.hotkey('ctrl','a')
         pg.press('backspace')
     pg.typewrite(text,interval=0.1)
-    return f'Typed {text} on {control.Name} Element with ControlType {control.ControlTypeName} at ({x},{y}).'
+    return f'Typed "{text}" on {control.Name} Element with ControlType {control.ControlTypeName} at ({x},{y}).'
 
 @mcp.tool(name='Switch-Tool',description='Switch to a specific application window (e.g., "notepad", "calculator", "chrome", etc.) and bring to foreground.')
 def switch_tool(name: str) -> str:
@@ -144,38 +140,32 @@ def switch_tool(name: str) -> str:
     else:
         return f'Switched to {name.title()} window.'
 
-@mcp.tool(name='Scroll-Tool',description='Scroll at specific coordinates or current mouse position. Use wheel_times to control scroll amount (1 wheel = ~3-5 lines). Essential for navigating lists, web pages, and long content.')
-def scroll_tool(x: int = None, y: int = None, type:Literal['horizontal','vertical']='vertical',direction:Literal['up','down','left','right']='down',wheel_times:int=1)->str:
+@mcp.tool(name='Scroll-Tool',description='Scroll at specific coordinates or current mouse position. Use clicks to control scroll amount (1 wheel = ~3-5 lines). Essential for navigating lists, web pages, and long content.')
+def scroll_tool(x: int = None, y: int = None, direction:Literal['up','down','left','right']='down', clicks:int=3) -> str:
     if x is not None and y is not None:
         pg.moveTo(x, y)
-    match type:
-        case 'vertical':
-            match direction:
-                case 'up':
-                    ua.WheelUp(wheel_times)
-                case 'down':
-                    ua.WheelDown(wheel_times)
-                case _:
-                    return 'Invalid direction. Use "up" or "down".'
-        case 'horizontal':
-            match direction:
-                case 'left':
-                    pg.keyDown('Shift')
-                    pg.sleep(0.05)
-                    ua.WheelUp(wheel_times)
-                    pg.sleep(0.05)
-                    pg.keyUp('Shift')
-                case 'right':
-                    pg.keyDown('Shift')
-                    pg.sleep(0.05)
-                    ua.WheelDown(wheel_times)
-                    pg.sleep(0.05)
-                    pg.keyUp('Shift')
-                case _:
-                    return 'Invalid direction. Use "left" or "right".'
+
+    match direction:
+        case 'up':
+            ua.WheelUp(clicks)
+        case 'down':
+            ua.WheelDown(clicks)
+        case 'left':
+            pg.keyDown('shift')
+            pg.sleep(0.05)
+            ua.WheelUp(clicks)
+            pg.sleep(0.05)
+            pg.keyUp('shift')
+        case 'right':
+            pg.keyDown('shift')
+            pg.sleep(0.05)
+            ua.WheelDown(clicks)
+            pg.sleep(0.05)
+            pg.keyUp('shift')
         case _:
-            return 'Invalid type. Use "horizontal" or "vertical".'
-    return f'Scrolled {type} {direction} by {wheel_times} wheel times.'
+            return f'Invalid direction "{direction}". Use: up, down, left, right.'
+
+    return f'Scrolled {direction} by {clicks} wheel clicks.'
 
 @mcp.tool(name='Drag-Tool',description='Drag and drop operation from source coordinates to destination coordinates. Useful for moving files, resizing windows, or drag-and-drop interactions.')
 def drag_tool(from_x: int, from_y: int, to_x: int, to_y: int)->str:
@@ -195,7 +185,7 @@ def move_tool(x: int, y: int)->str:
 @mcp.tool(name='Shortcut-Tool',description='Execute keyboard shortcuts using key combinations. Pass keys as list (e.g., ["ctrl", "c"] for copy, ["alt", "tab"] for app switching, ["win", "r"] for Run dialog).')
 def shortcut_tool(shortcut: List[str]):
     pg.hotkey(*shortcut)
-    return f'Pressed {'+'.join(shortcut)}.'
+    return f"Pressed {'+'.join(shortcut)}."
 
 @mcp.tool(name='Key-Tool',description='Press individual keyboard keys. Supports special keys like "enter", "escape", "tab", "space", "backspace", "delete", arrow keys ("up", "down", "left", "right"), function keys ("f1"-"f12").')
 def key_tool(key:str='')->str:
@@ -246,37 +236,4 @@ def browser_tool(url: str = None) -> str:
         return f'Error launching Edge browser: {str(e)}'
 
 if __name__ == "__main__":
-    import sys
-    
-    # Handle help command
-    if "--help" in sys.argv or "-h" in sys.argv:
-        print("Darbot Windows MCP Server")
-        print("========================")
-        print("A Model Context Protocol server for Windows desktop automation.")
-        print("")
-        print("Usage:")
-        print("  python main.py          Start the MCP server in stdio mode")
-        print("  python main.py --help   Show this help message")
-        print("")
-        print("Available Tools:")
-        print("  Launch-Tool    - Launch applications from Start menu")
-        print("  Powershell-Tool - Run PowerShell commands")
-        print("  State-Tool     - Get desktop state and UI elements")
-        print("  Clipboard-Tool - Copy/paste clipboard content")
-        print("  Click-Tool     - Click at coordinates")
-        print("  Type-Tool      - Type text into UI elements")
-        print("  Switch-Tool    - Switch between applications")
-        print("  Scroll-Tool    - Scroll in windows")
-        print("  Drag-Tool      - Drag and drop operations")
-        print("  Move-Tool      - Move mouse cursor")
-        print("  Shortcut-Tool  - Send keyboard shortcuts")
-        print("  Key-Tool       - Press individual keys")
-        print("  Wait-Tool      - Pause execution")
-        print("  Scrape-Tool    - Fetch webpage content")
-        print("  Browser-Tool   - Launch Edge browser")
-        print("")
-        print("For VS Code integration, see README.md for configuration instructions.")
-        sys.exit(0)
-    
-    # Start the MCP server
     mcp.run()
