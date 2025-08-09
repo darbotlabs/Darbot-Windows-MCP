@@ -47,16 +47,24 @@ git --version
 
 ## Method 1: NPM Installation (Recommended)
 
-The NPM installation is the easiest and most automated method.
+The NPM installation is the easiest and most automated method, now with refined installation process for seamless VSCode MCP integration.
 
-### Step 1: Install the Package
+### Option A: Global Installation
 
 ```bash
 # Install globally
-npm install -g darbot-windows-mcp
+npm install -g @darbotlabs/darbot-windows-mcp
 ```
 
-### Step 2: Run Setup Wizard
+### Option B: VSCode MCP Server UI Installation
+
+1. Open VSCode settings (Ctrl+,)
+2. Search for "MCP" and click "Add MCP Server"
+3. Select "NPM Package" as the server type
+4. Enter package name: `@darbotlabs/darbot-windows-mcp`
+5. VSCode will automatically install the package
+
+### Step 2: Complete Setup
 
 ```bash
 # Run the interactive setup wizard
@@ -64,10 +72,16 @@ darbot-setup
 ```
 
 The setup wizard will:
+- ✅ Check and guide Python 3.12+ installation if needed
 - ✅ Install Python dependencies (UV or pip)
 - ✅ Configure VS Code MCP integration
 - ✅ Configure Claude Desktop integration
 - ✅ Test the installation
+
+**Note:** If Python is not installed, the setup wizard will:
+- Provide download links and installation instructions
+- Wait for you to install Python
+- Allow you to retry the setup process
 
 ### Step 3: Start the Server
 
@@ -76,6 +90,21 @@ The setup wizard will:
 darbot-windows-mcp
 
 # Or show help
+darbot-windows-mcp --help
+```
+
+### Troubleshooting NPM Installation
+
+If you encounter issues:
+
+```bash
+# Check if package installed correctly
+npm list -g @darbotlabs/darbot-windows-mcp
+
+# Run dependency check manually
+npm run install-deps
+
+# Get help
 darbot-windows-mcp --help
 ```
 
