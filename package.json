@@ -9,8 +9,8 @@
     "darbot-setup": "bin/setup.js"
   },
   "scripts": {
-    "install": "node scripts/install.js",
     "postinstall": "node scripts/postinstall.js",
+    "install-deps": "node scripts/install.js",
     "setup": "node bin/setup.js",
     "start": "node bin/darbot-windows-mcp.js",
     "test": "node scripts/test.js"

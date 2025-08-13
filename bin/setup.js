@@ -54,15 +54,52 @@ class DarbotSetup {
             
             if (!pythonVersion.includes('3.12') && !pythonVersion.includes('3.13') && !pythonVersion.includes('3.14') && !pythonVersion.includes('3.15')) {
                 spinner.fail('Python 3.12+ is required');
-                console.log(chalk.red('Please install Python 3.12 or higher'));
-                process.exit(1);
+                await this.handleMissingPython();
+                return;
             }
             
             spinner.succeed(`Found ${pythonVersion}`);
         } catch (error) {
             spinner.fail('Python not found');
-            console.log(chalk.red('Please install Python 3.12+ and ensure it\'s in your PATH'));
-            process.exit(1);
+            await this.handleMissingPython();
+        }
+    }
+
+    async handleMissingPython() {
+        console.log(chalk.yellow('\n⚠️  Python 3.12+ is required but not found in PATH'));
+        console.log(chalk.cyan('\nOptions:'));
+        console.log('1. Download and install Python 3.12+ from: https://www.python.org/downloads/');
+        console.log('2. Make sure Python is added to your PATH during installation');
+        console.log('3. Restart your terminal/command prompt after installation');
+        console.log('4. Run "darbot-setup" again');
+        
+        const { action } = await inquirer.prompt([
+            {
+                type: 'list',
+                name: 'action',
+                message: 'What would you like to do?',
+                choices: [
+                    { name: 'Open Python download page and exit setup', value: 'download' },
+                    { name: 'I already have Python installed, try again', value: 'retry' },
+                    { name: 'Exit setup', value: 'exit' }
+                ]
+            }
+        ]);
+        
+        if (action === 'download') {
+            console.log(chalk.cyan('\n🌐 Opening Python download page...'));
+            try {
+                await this.runCommand('start', ['https://www.python.org/downloads/']);
+            } catch (error) {
+                console.log('Please visit: https://www.python.org/downloads/');
+            }
+            console.log(chalk.yellow('\nAfter installing Python, run "darbot-setup" again'));
+            process.exit(0);
+        } else if (action === 'retry') {
+            return await this.checkSystemRequirements();
+        } else {
+            console.log(chalk.gray('\nSetup cancelled. Run "darbot-setup" when Python is installed.'));
+            process.exit(0);
         }
     }
 

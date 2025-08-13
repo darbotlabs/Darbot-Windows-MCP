@@ -32,6 +32,8 @@ function runMCPServer() {
             args = [mainPyPath];
         }
         
+        console.log(chalk.gray(`Starting: ${command} ${args.join(' ')}`));
+        
         // Start the MCP server
         const mcpProcess = spawn(command, args, {
             stdio: 'inherit',
@@ -40,12 +42,22 @@ function runMCPServer() {
         
         mcpProcess.on('error', (error) => {
             console.error(chalk.red('❌ Failed to start MCP server:'), error.message);
+            if (error.code === 'ENOENT') {
+                console.error(chalk.yellow('\n💡 Troubleshooting:'));
+                console.error('• Run "darbot-setup" to install Python dependencies');
+                console.error('• Make sure Python 3.12+ is installed and in PATH');
+                console.error('• Download Python from: https://www.python.org/downloads/');
+            }
             process.exit(1);
         });
         
         mcpProcess.on('close', (code) => {
             if (code !== 0) {
                 console.error(chalk.red(`❌ MCP server exited with code ${code}`));
+                if (code === 1) {
+                    console.error(chalk.yellow('\n💡 This might be due to missing Python dependencies.'));
+                    console.error('Run "darbot-setup" to install required dependencies.');
+                }
                 process.exit(code);
             }
         });
@@ -72,7 +84,12 @@ function runMCPServer() {
         
         mcpProcess.on('error', (error) => {
             console.error(chalk.red('❌ Failed to start MCP server:'), error.message);
-            console.error(chalk.red('💡 Make sure Python 3.12+ is installed and in PATH'));
+            if (error.code === 'ENOENT') {
+                console.error(chalk.yellow('\n💡 Troubleshooting:'));
+                console.error('• Run "darbot-setup" to install Python dependencies');
+                console.error('• Make sure Python 3.12+ is installed and in PATH');
+                console.error('• Download Python from: https://www.python.org/downloads/');
+            }
             process.exit(1);
         });
     });
