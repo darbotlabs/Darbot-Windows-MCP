@@ -3,9 +3,13 @@ from typing import Set
 BROWSER_NAMES=set(['msedge.exe','chrome.exe','firefox.exe'])
 
 AVOIDED_APPS:Set[str]=set([
-    'Recording toolbar'
+    'AgentUI'
 ])
 
-EXCLUDED_CLASSNAMES:Set[str]=set([
-    'Progman','Shell_TrayWnd','Microsoft.UI.Content.PopupWindowSiteBridge','Windows.UI.Core.CoreWindow'
+EXCLUDED_APPS:Set[str]=set([
+    'Progman','Shell_TrayWnd',
+    'Microsoft.UI.Content.PopupWindowSiteBridge',
+    'Windows.UI.Core.CoreWindow',
 ])
+
+PROCESS_PER_MONITOR_DPI_AWARE = 2

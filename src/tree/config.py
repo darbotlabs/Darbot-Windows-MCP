@@ -3,7 +3,7 @@ INTERACTIVE_CONTROL_TYPE_NAMES=set([
     'EditControl','CheckBoxControl', 'RadioButtonControl','ComboBoxControl',
     'HyperlinkControl','SplitButtonControl','TabItemControl',
     'TreeItemControl','DataItemControl','HeaderItemControl','TextBoxControl',
-    'ImageControl','SpinnerControl','ScrollBarControl'
+    'SpinnerControl','ScrollBarControl'
 ])
 
 DEFAULT_ACTIONS=set([
