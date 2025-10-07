@@ -129,7 +129,7 @@ def type_tool(loc:list[int],text:str,clear:bool=False,press_enter:bool=False)->s
         pg.hotkey('ctrl','a')
         pg.press('backspace')
 
-    pg.typewrite(text.encode(encoding=desktop.encoding),interval=0.1)
+    pg.typewrite(text,interval=0.1)
     
     if press_enter:
         pg.press('enter')
