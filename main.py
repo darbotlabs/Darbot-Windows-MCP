@@ -195,7 +195,8 @@ def drag_tool(from_loc:list[int],to_loc:list[int])->str:
         raise ValueError("to_loc must be a list of exactly 2 integers [x, y]")
     x1,y1=from_loc[0],from_loc[1]
     x2,y2=to_loc[0],to_loc[1]
-    pg.drag(x1, y1, x2, y2, duration=0.5)
+    pg.moveTo(x1, y1)
+    pg.dragTo(x2, y2, duration=0.5)
     control=desktop.get_element_under_cursor()
     return f'Dragged {control.Name} element with ControlType {control.ControlTypeName} from ({x1},{y1}) to ({x2},{y2}).'
 
