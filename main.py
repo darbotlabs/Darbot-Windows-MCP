@@ -107,13 +107,7 @@ def click_tool(loc:list[int],button:Literal['left','right','middle']='left',clic
     x,y=loc[0],loc[1]
     pg.moveTo(x, y)
     control=desktop.get_element_under_cursor()
-    parent_control=control.GetParentControl()
-    if parent_control.Name=="Desktop":
-        pg.click(x=x,y=y,button=button,clicks=clicks)
-    else:
-        pg.mouseDown()
-        pg.click(button=button,clicks=clicks)
-        pg.mouseUp()
+    pg.click(x=x,y=y,button=button,clicks=clicks)
     num_clicks={1:'Single',2:'Double',3:'Triple'}
     return f'{num_clicks.get(clicks)} {button} Clicked on {control.Name} Element with ControlType {control.ControlTypeName} at ({x},{y}).'
 
