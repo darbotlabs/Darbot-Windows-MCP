@@ -66,7 +66,7 @@ def state_tool(use_vision:bool=False):
     scrollable_elements=desktop_state.tree_state.scrollable_elements_to_string()
     apps=desktop_state.apps_to_string()
     active_app=desktop_state.active_app_to_string()
-    return dedent(f'''
+    return [dedent(f'''
     Default Language of User:
     {default_language} with encoding: {desktop.encoding}
                             
@@ -84,7 +84,7 @@ def state_tool(use_vision:bool=False):
 
     List of Scrollable Elements:
     {scrollable_elements or 'No scrollable elements found.'}
-    ''')
+    ''')]+([Image(data=desktop_state.screenshot,format='png')] if use_vision else [])
     
 @mcp.tool(name='Clipboard-Tool',description='Copy text to clipboard or retrieve current clipboard content. Use "copy" mode with text parameter to copy, "paste" mode to retrieve.')
 def clipboard_tool(mode: Literal['copy', 'paste'], text: str = None)->str:
