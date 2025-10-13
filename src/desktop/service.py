@@ -100,6 +100,7 @@ class Desktop:
         return "".join([row.get('DisplayName') for row in reader])
     
     def resize_app(self,size:tuple[int,int]=None,loc:tuple[int,int]=None)->tuple[str,int]:
+        self.get_state()
         active_app=self.desktop_state.active_app
         if active_app is None:
             return "No active app found",1
@@ -142,6 +143,7 @@ class Desktop:
         return response,status
     
     def switch_app(self,name:str):
+        self.get_state()
         apps={app.name:app for app in [self.desktop_state.active_app]+self.desktop_state.apps if app is not None}
         matched_app:Optional[tuple[str,float]]=process.extractOne(name,list(apps.keys()),score_cutoff=70)
         if matched_app is None:
