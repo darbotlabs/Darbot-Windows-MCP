@@ -105,9 +105,8 @@ def click_tool(loc:list[int],button:Literal['left','right','middle']='left',clic
     if len(loc) != 2:
         raise ValueError("Location must be a list of exactly 2 integers [x, y]")
     x,y=loc[0],loc[1]
-    pg.moveTo(x, y)
     control=desktop.get_element_under_cursor()
-    pg.click(x=x,y=y,button=button,clicks=clicks)
+    pg.click(x=x,y=y,button=button,clicks=click,duration=0.2)
     num_clicks={1:'Single',2:'Double',3:'Triple'}
     return f'{num_clicks.get(clicks)} {button} Clicked on {control.Name} Element with ControlType {control.ControlTypeName} at ({x},{y}).'
 
@@ -116,7 +115,7 @@ def type_tool(loc:list[int],text:str,clear:bool=False,press_enter:bool=False)->s
     if len(loc) != 2:
         raise ValueError("Location must be a list of exactly 2 integers [x, y]")
     x,y=loc[0],loc[1]
-    pg.click(x=x, y=y)
+    pg.leftClick(x=x, y=y,duration=0.2)
     control=desktop.get_element_under_cursor()
 
     if clear=='True':
