@@ -220,9 +220,7 @@ class Desktop:
     def screenshot_in_bytes(self,screenshot:PILImage)->bytes:
         buffer=BytesIO()
         screenshot.save(buffer,format='PNG')
-        img_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
-        data_uri = f"data:image/png;base64,{img_base64}"
-        return data_uri
+        return buffer.getvalue()
 
     def get_screenshot(self,scale:float=0.7)->Image.Image:
         screenshot=pyautogui.screenshot()
