@@ -45,8 +45,11 @@ class Desktop:
         return None
     
     def get_active_app(self,apps:list[App])->App|None:
-        if len(apps)>0 and apps[0].status != Status.MINIMIZED:
-            return apps[0]
+        for app in apps:
+            if app.status == Status.MINIMIZED:
+                continue
+            if app.name.strip():
+                return app
         return None
     
     def get_app_status(self,control:Control)->Status:
