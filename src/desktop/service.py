@@ -1,3 +1,4 @@
+from ctypes.wintypes import RECT
 from uiautomation import Control, GetRootControl, IsIconic, IsZoomed, IsWindowVisible, ControlType, ControlFromCursor, IsTopLevelWindow, ShowWindow, ControlFromHandle
 from src.desktop.config import EXCLUDED_APPS, AVOIDED_APPS, BROWSER_NAMES, PROCESS_PER_MONITOR_DPI_AWARE
 from src.desktop.views import DesktopState, App, Size, Status
@@ -18,6 +19,7 @@ import base64
 import csv
 import os
 import io
+import win32gui
 
 class Desktop:
     def __init__(self):
@@ -45,12 +47,46 @@ class Desktop:
         return None
     
     def get_active_app(self,apps:list[App])->App|None:
-        for app in apps:
-            if app.status == Status.MINIMIZED:
-                continue
-            if app.name.strip():
-                return app
+        if len(apps)>0 and apps[0].status != Status.MINIMIZED:
+            return apps[0]
         return None
+    
+    def get_active_app_by_win32(self)->App|None:
+        try:
+            hwnd = win32gui.GetForegroundWindow()
+            if hwnd == 0:
+                return None
+            title = win32gui.GetWindowText(hwnd)
+            if not title:
+                return None
+
+            # Get window status
+            # GetWindowPlacement returns (flags, showCmd, ptMin, ptMax, rcNormal)
+            # showCmd (index 1) contains the display status of the window
+            placement = win32gui.GetWindowPlacement(hwnd)
+            show_cmd = placement[1]
+            SW_SHOWMINIMIZED = 2
+            SW_SHOWMAXIMIZED = 3
+
+            status = Status.NORMAL
+            if show_cmd == SW_SHOWMINIMIZED:
+                status = Status.MINIMIZED
+            elif show_cmd == SW_SHOWMAXIMIZED:
+                status = Status.MAXIMIZED
+
+            size = self.get_app_size_by_hwnd(hwnd)
+
+            return App(
+                name=title,
+                depth=0, # I don't know what effect it has yet, so I set all of them to 0.
+                status=status,
+                size=size,
+                handle=hwnd
+            )
+
+        except Exception as ex:
+            print(f"Error: {ex}")
+            return None
     
     def get_app_status(self,control:Control)->Status:
         if IsIconic(control.NativeWindowHandle):
@@ -167,6 +203,14 @@ class Desktop:
         if window.isempty():
             return Size(width=0,height=0)
         return Size(width=window.width(),height=window.height())
+    
+    def get_app_size_by_hwnd(self,hwnd)->Size:
+        rect = RECT()
+        ctypes.windll.user32.GetWindowRect(hwnd, ctypes.byref(ctypes.cast(rect, ctypes.POINTER(RECT))))
+        width = rect.right - rect.left
+        height = rect.bottom - rect.top
+        # When the window is maximized, the size is calculated inaccurately
+        return Size(width=width,height=height)
     
     def is_app_visible(self,app)->bool:
         is_minimized=self.get_app_status(app)!=Status.MINIMIZED
