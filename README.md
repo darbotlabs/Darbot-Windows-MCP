@@ -298,6 +298,16 @@ This MCP interacts directly with your Windows operating system to perform action
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 🙏 Acknowledgements
+
+Windows-MCP makes use of several excellent open-source projects that power its Windows automation features:
+
+- [UIAutomation](https://github.com/yinkaisheng/Python-UIAutomation-for-Windows)
+
+- [PyAutoGUI](https://github.com/asweigart/pyautogui)
+
+Huge thanks to the maintainers and contributors of these libraries for their outstanding work and open-source spirit.
+
 ## 🤝Contributing
 
 Contributions are welcome! Please see [CONTRIBUTING](CONTRIBUTING) for setup instructions and development guidelines.

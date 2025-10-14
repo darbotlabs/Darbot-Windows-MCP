@@ -1,5 +1,4 @@
-from ctypes.wintypes import RECT
-from uiautomation import Control, GetRootControl, IsIconic, IsZoomed, IsWindowVisible, ControlType, ControlFromCursor, IsTopLevelWindow, ShowWindow, ControlFromHandle
+from uiautomation import Control, GetRootControl, IsIconic, IsZoomed, IsWindowVisible, ControlType, ControlFromCursor, IsTopLevelWindow, ShowWindow, ControlFromHandle, GetForegroundWindow, SetForegroundWindow, GetScreenSize
 from src.desktop.config import EXCLUDED_APPS, AVOIDED_APPS, BROWSER_NAMES, PROCESS_PER_MONITOR_DPI_AWARE
 from src.desktop.views import DesktopState, App, Size, Status
 from PIL.Image import Image as PILImage
@@ -15,11 +14,9 @@ from PIL import Image
 import subprocess
 import pyautogui
 import ctypes
-import base64
 import csv
 import os
 import io
-import win32gui
 
 class Desktop:
     def __init__(self):
@@ -47,46 +44,15 @@ class Desktop:
         return None
     
     def get_active_app(self,apps:list[App])->App|None:
-        if len(apps)>0 and apps[0].status != Status.MINIMIZED:
-            return apps[0]
-        return None
-    
-    def get_active_app_by_win32(self)->App|None:
         try:
-            hwnd = win32gui.GetForegroundWindow()
-            if hwnd == 0:
-                return None
-            title = win32gui.GetWindowText(hwnd)
-            if not title:
-                return None
-
-            # Get window status
-            # GetWindowPlacement returns (flags, showCmd, ptMin, ptMax, rcNormal)
-            # showCmd (index 1) contains the display status of the window
-            placement = win32gui.GetWindowPlacement(hwnd)
-            show_cmd = placement[1]
-            SW_SHOWMINIMIZED = 2
-            SW_SHOWMAXIMIZED = 3
-
-            status = Status.NORMAL
-            if show_cmd == SW_SHOWMINIMIZED:
-                status = Status.MINIMIZED
-            elif show_cmd == SW_SHOWMAXIMIZED:
-                status = Status.MAXIMIZED
-
-            size = self.get_app_size_by_hwnd(hwnd)
-
-            return App(
-                name=title,
-                depth=0, # I don't know what effect it has yet, so I set all of them to 0.
-                status=status,
-                size=size,
-                handle=hwnd
-            )
-
+            handle=GetForegroundWindow()
+            for app in apps:
+                if app.handle!=handle:
+                    continue
+                return app
         except Exception as ex:
             print(f"Error: {ex}")
-            return None
+        return None
     
     def get_app_status(self,control:Control)->Status:
         if IsIconic(control.NativeWindowHandle):
@@ -193,9 +159,7 @@ class Desktop:
             ShowWindow(app.handle, cmdShow=9)
             return (f'{app_name.title()} restored from Minimized state.',0)
         else:
-            from pywinauto import Application
-            app=Application().connect(handle=app.handle)
-            app.window().set_focus()
+            SetForegroundWindow(app.handle)
             return (f'Switched to {app_name.title()} window.',0)
     
     def get_app_size(self,control:Control):
@@ -203,14 +167,6 @@ class Desktop:
         if window.isempty():
             return Size(width=0,height=0)
         return Size(width=window.width(),height=window.height())
-    
-    def get_app_size_by_hwnd(self,hwnd)->Size:
-        rect = RECT()
-        ctypes.windll.user32.GetWindowRect(hwnd, ctypes.byref(ctypes.cast(rect, ctypes.POINTER(RECT))))
-        width = rect.right - rect.left
-        height = rect.bottom - rect.top
-        # When the window is maximized, the size is calculated inaccurately
-        return Size(width=width,height=height)
     
     def is_app_visible(self,app)->bool:
         is_minimized=self.get_app_status(app)!=Status.MINIMIZED
@@ -242,7 +198,8 @@ class Desktop:
             apps = []
 
         active_app=self.get_active_app(apps)
-        apps=apps[1:] if len(apps)>1 else []
+        if active_app:
+            apps.remove(active_app)
         return (active_app,apps)
     
     def get_windows_version(self)->str:
@@ -260,10 +217,8 @@ class Desktop:
         dpi = user32.GetDpiForSystem()
         return dpi / 96.0
     
-    def get_screen_resolution(self)->Size:
-        user32 = ctypes.windll.user32
-        width = user32.GetSystemMetrics(0)
-        height = user32.GetSystemMetrics(1)
+    def get_screen_size(self)->Size:
+        width,height=GetScreenSize()
         return Size(width=width,height=height)
     
     def screenshot_in_bytes(self,screenshot:PILImage)->bytes:
@@ -282,9 +237,8 @@ class Desktop:
         SW_MINIMIZE=6
         SW_RESTORE = 9
         try:
-            user32 = ctypes.windll.user32
-            hWnd = user32.GetForegroundWindow()
-            user32.ShowWindow(hWnd, SW_MINIMIZE)
+            handle = GetForegroundWindow()
+            ShowWindow(handle, SW_MINIMIZE)
             yield
         finally:
-            user32.ShowWindow(hWnd, SW_RESTORE)
+            ShowWindow(handle, SW_RESTORE)

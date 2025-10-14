@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 class Tree:
     def __init__(self,desktop:'Desktop'):
         self.desktop=desktop
-        self.screen_size=self.desktop.get_screen_resolution()
+        self.screen_size=self.desktop.get_screen_size()
 
     def get_state(self)->TreeState:
         sleep(0.1)
@@ -306,6 +306,8 @@ class Tree:
                 app_name="Desktop"
             case 'Shell_TrayWnd'|'Shell_SecondaryTrayWnd':
                 app_name="Taskbar"
+            case 'Microsoft.UI.Content.PopupWindowSiteBridge':
+                app_name="Context Menu"
             case _:
                 pass
         tree_traversal(node,is_dom=False,is_dialog=False)
