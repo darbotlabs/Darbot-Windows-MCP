@@ -301,7 +301,13 @@ class Tree:
 
         interactive_nodes, dom_interactive_nodes, informative_nodes, scrollable_nodes = [], [], [],[]
         app_name=node.Name.strip()
-        app_name='Desktop' if node.ClassName=='Progman' else app_name
+        match node.ClassName:
+            case "Progman":
+                app_name="Desktop"
+            case 'Shell_TrayWnd'|'Shell_SecondaryTrayWnd':
+                app_name="Taskbar"
+            case _:
+                pass
         tree_traversal(node,is_dom=False,is_dialog=False)
         interactive_nodes.extend(dom_interactive_nodes)
         return (interactive_nodes,informative_nodes,scrollable_nodes)
