@@ -130,10 +130,12 @@ class Desktop:
             app_control.MoveWindow(x,y,width,height)
             return (f'{active_app.name} resized to {width}x{height} at {x},{y}.',0)
     
-    def is_app_running(self,name:str)->bool:
-        apps={app.name:app for app in [self.desktop_state.active_app]+self.desktop_state.apps if app is not None}
-        return process.extractOne(name,list(apps.keys()),score_cutoff=60) is not None
-        
+    def is_app_running(self, name: str) -> bool:
+        if self.desktop_state is None:
+            self.get_state()
+        apps = {app.name: app for app in [self.desktop_state.active_app] + self.desktop_state.apps if app is not None}
+        return process.extractOne(name, list(apps.keys()), score_cutoff=60) is not None
+
     def launch_app(self,name:str)->tuple[str,int]:
         apps_map=self.get_apps_from_start_menu()
         matched_app=process.extractOne(name,apps_map.keys(),score_cutoff=70)
