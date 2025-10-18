@@ -285,7 +285,7 @@ class Tree:
                     # enter DOM subtree
                     tree_traversal(child, is_dom=True, is_dialog=is_dialog)
                 elif isinstance(child,WindowControl):
-                    if not is_keyboard_focusable(child):
+                    if not (is_keyboard_focusable(child) or child.IsOffscreen):
                         if is_dom:
                             bounding_box=child.BoundingRectangle
                             if bounding_box.width() > 0.6*self.screen_size.width:
