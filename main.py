@@ -106,7 +106,7 @@ def click_tool(loc:list[int],button:Literal['left','right','middle']='left',clic
         raise ValueError("Location must be a list of exactly 2 integers [x, y]")
     x,y=loc[0],loc[1]
     control=desktop.get_element_under_cursor()
-    pg.click(x=x,y=y,button=button,clicks=click,duration=0.2)
+    pg.click(x=x,y=y,button=button,clicks=clicks,duration=0.2)
     num_clicks={1:'Single',2:'Double',3:'Triple'}
     return f'{num_clicks.get(clicks)} {button} Clicked on {control.Name} Element with ControlType {control.ControlTypeName} at ({x},{y}).'
 
