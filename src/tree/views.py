@@ -41,6 +41,9 @@ class BoundingBox:
     width:int
     height:int
 
+    def get_center(self)->'Center':
+        return Center(x=self.left+self.width//2,y=self.top+self.height//2)
+
     def xywh_to_string(self):
         return f'({self.left},{self.top},{self.width},{self.height})'
     
@@ -69,6 +72,7 @@ class TreeElementNode:
     shortcut: str
     bounding_box: BoundingBox
     center: Center
+    xpath:str
     app_name: str
 
     def to_row(self, index: int):
@@ -88,6 +92,7 @@ class TextElementNode:
 class ScrollElementNode:
     name: str
     control_type: str
+    xpath:str
     app_name: str
     bounding_box: BoundingBox
     center: Center
@@ -110,3 +115,5 @@ class ScrollElementNode:
             self.vertical_scroll_percent,
             self.is_focused
         ]
+
+ElementNode=TreeElementNode|TextElementNode|ScrollElementNode

@@ -1,7 +1,8 @@
 from src.tree.views import TreeState
-from typing import Optional
 from dataclasses import dataclass
 from tabulate import tabulate
+from typing import Optional
+from PIL.Image import Image
 from enum import Enum
 
 class Browser(Enum):
@@ -23,6 +24,7 @@ class App:
     status:Status
     size:'Size'
     handle: int
+    process_id:int
     
     def to_row(self):
         return [self.name, self.depth, self.status.value, self.size.width, self.size.height, self.handle]
@@ -39,7 +41,7 @@ class Size:
 class DesktopState:
     apps:list[App]
     active_app:Optional[App]
-    screenshot:bytes|None
+    screenshot:Image|bytes|None
     tree_state:TreeState
 
     def active_app_to_string(self):

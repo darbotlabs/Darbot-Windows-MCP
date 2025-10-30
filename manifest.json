@@ -35,8 +35,8 @@
   },
   "tools": [
     {
-      "name": "Launch-Tool",
-      "description": "Launch an application from the Windows Start Menu by name (e.g., \"notepad\", \"calculator\", \"chrome\")"
+      "name": "App-Tool",
+      "description": "Manages Windows applications through launch, resize, and window switching operations."
     },
     {
       "name": "Powershell-Tool",
@@ -47,24 +47,12 @@
       "description": "Capture comprehensive desktop state including focused/opened applications, interactive UI elements (buttons, text fields, menus), informative content (text, labels, status), and scrollable areas. Optionally includes visual screenshot when use_vision=True. Essential for understanding current desktop context and available UI interactions."
     },
     {
-      "name": "Clipboard-Tool",
-      "description": "Copy text to clipboard or retrieve current clipboard content. Use \"copy\" mode with text parameter to copy, \"paste\" mode to retrieve."
-    },
-    {
       "name": "Click-Tool",
       "description": "Click on UI elements at specific coordinates. Supports left/right/middle mouse buttons and single/double/triple clicks. Use coordinates from State-Tool output."
     },
     {
       "name": "Type-Tool",
       "description": "Type text into input fields, text areas, or focused elements. Set clear=True to replace existing text, False to append. Click on target element coordinates first."
-    },
-    {
-      "name": "Switch-Tool",
-      "description": "Switch to a specific application window (e.g., \"notepad\", \"calculator\", \"chrome\", etc.) and bring to foreground."
-    },
-    {
-      "name": "Resize-Tool",
-      "description": "Resize a specific application window (e.g., \"notepad\", \"calculator\", \"chrome\", etc.) to specific size (WIDTHxHEIGHT) or move to specific location (X,Y)."
     },
     {
       "name": "Scroll-Tool",
@@ -80,11 +68,7 @@
     },
     {
       "name": "Shortcut-Tool",
-      "description": "Execute keyboard shortcuts using key combinations. Pass keys as list (e.g., ['ctrl', 'c'] for copy, ['alt', 'tab'] for app switching, ['win', 'r'] for Run dialog)."
-    },
-    {
-      "name":"Key-Tool",
-      "description":"Press individual keyboard keys. Supports special keys like 'enter', 'escape', 'tab', 'space', 'backspace', 'delete', arrow keys 'up', 'down', 'left', 'right'), function keys ('f1'-'f12')."
+      "description": "Execute keyboard shortcuts using key combinations. Pass keys as list (e.g., 'ctrl'+'c' for copy, 'alt'+'tab' for app switching, 'win'+'r' for Run dialog, 'win' is for opening the start menu)."
     },
     {
       "name":"Wait-Tool",
