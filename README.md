@@ -78,7 +78,7 @@ mcp-name: io.github.CursorTouch/Windows-MCP
   1. Install [Claude Desktop](https://claude.ai/download) and
 
 ```shell
-npm install -g @anthropic-ai/dxt
+npm install -g @anthropic-ai/mcpb
 ```
 
   2. Clone the repository.
@@ -89,15 +89,15 @@ git clone https://github.com/CursorTouch/Windows-MCP.git
 cd Windows-MCP
 ```
 
-  3. Build Desktop Extension `DXT`:
+  3. Build Desktop Extension `MCPB`:
 
 ```shell
-npx @anthropic-ai/dxt pack
+npx @anthropic-ai/mcpb pack
 ```
 
   4. Open Claude Desktop:
 
-Go to `Settings->Extensions->Advance Settings->Install Extension` (locate the `.dxt` file)-> Install
+Go to `Settings->Extensions->Advance Settings->Install Extension` (locate the `.mcpb` file)-> Install
 
   5. Enjoy 🥳.
 
