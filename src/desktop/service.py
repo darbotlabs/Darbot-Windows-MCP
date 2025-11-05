@@ -464,6 +464,60 @@ class Desktop:
         screenshot.thumbnail(size=size, resample=Image.Resampling.LANCZOS)
         return screenshot
     
+    def launch_app(self, name: str) -> tuple[str, int]:
+        """Launch an application by name using PowerShell Start-Process"""
+        apps_map = self.get_apps_from_start_menu()
+        matched_app = process.extractOne(name, apps_map.keys())
+        if matched_app is None:
+            return (f'Application {name.title()} not found in start menu.', 1)
+        app_name, _ = matched_app
+        appid = apps_map.get(app_name)
+        if appid is None:
+            return (f'Application {name.title()} not found in start menu.', 1)
+        if name.endswith('.exe'):
+            response, status = self.execute_command(f'Start-Process "{appid}"')
+        else:
+            response, status = self.execute_command(f'Start-Process "shell:AppsFolder\\{appid}"')
+        return response, status
+    
+    def switch_app(self, name: str) -> tuple[str, int]:
+        """Switch to an application by name using fuzzy matching"""
+        if not self.desktop_state:
+            return ('Desktop state not available. Call get_state() first.', 1)
+        apps = {app.name: app for app in self.desktop_state.apps}
+        matched_app = process.extractOne(name, list(apps.keys()))
+        if matched_app is None:
+            return (f'Application {name.title()} not found.', 1)
+        app_name, _ = matched_app
+        app = apps.get(app_name)
+        try:
+            # Use win32gui to bring window to foreground
+            win32gui.SetForegroundWindow(app.handle)
+            return (f'{app_name.title()} switched to foreground.', 0)
+        except Exception:
+            return (f'Failed to switch to {app_name.title()}.', 1)
+    
+    def get_apps_from_start_menu(self) -> dict[str, str]:
+        """Get applications from Windows Start Menu"""
+        command = 'Get-StartApps | ConvertTo-Csv -NoTypeInformation'
+        apps_info, _ = self.execute_command(command)
+        reader = csv.DictReader(io.StringIO(apps_info))
+        return {row.get('Name').lower(): row.get('AppID') for row in reader}
+    
+    def is_app_browser(self, node: uia.Control) -> bool:
+        """Check if an application is a browser based on process name"""
+        try:
+            process = Process(node.ProcessId)
+            return process.name() in BROWSER_NAMES
+        except Exception:
+            return False
+    
+    def screenshot_in_bytes(self, screenshot: Image.Image) -> bytes:
+        """Convert PIL Image to bytes"""
+        io_buffer = BytesIO()
+        screenshot.save(io_buffer, format='PNG')
+        return io_buffer.getvalue()
+    
     @contextmanager
     def auto_minimize(self):
         try:

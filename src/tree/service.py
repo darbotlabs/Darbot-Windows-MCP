@@ -30,8 +30,13 @@ class Tree:
             width=screen_size.width, height=screen_size.height 
         )
 
-    def get_state(self,root:Control)->TreeState:
+    def get_state(self,root:Control=None)->TreeState:
+        """Get tree state, with optional root parameter for compatibility"""
         sleep(0.1)
+        if root is None:
+            # Use GetRootControl if no root provided (copy's approach)
+            from uiautomation import GetRootControl
+            root = GetRootControl()
         interactive_nodes,informative_nodes,scrollable_nodes=self.get_appwise_nodes(node=root)
         return TreeState(interactive_nodes=interactive_nodes,informative_nodes=informative_nodes,scrollable_nodes=scrollable_nodes)
 
