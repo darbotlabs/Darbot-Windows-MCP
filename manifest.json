@@ -1,15 +1,15 @@
 {
   "dxt_version": "0.1",
-  "name": "Windows-MCP",
-  "version": "0.3.0",
-  "description": "MCP Server that enables Claude to interact with Windows OS",
-  "long_description": "Windows MCP is an open-source project that enables seamless integration between AI agents and the Windows operating system. Acting as an MCP server bridges the gap between LLMs and the Windows operating system, allowing agents to perform tasks such as **file navigation, application control, UI interaction, QA testing,** and more.\n\n## Key Features\n\n- **Seamless Windows Integration**: Interacts natively with Windows UI elements, opens apps, controls windows, simulates user input, and more.\n- **Use Any LLM (Vision Optional)**: Unlike many automation tools, Windows MCP doesn't rely on any traditional computer vision techniques or specific fine-tuned models; it works with any LLMs, reducing complexity and setup time.\n- **Rich Toolset for UI Automation**: Includes tools for basic keyboard, mouse operation and capturing window/UI state.\n- **Lightweight & Open-Source**: Minimal dependencies and easy setup with full source code available under MIT license.\n- **Customizable & Extendable**: Easily adapt or extend tools to suit your unique automation or AI integration needs.\n- **Real-Time Interaction**: Typical latency between actions (e.g., from one mouse click to the next) ranges from **1.5 to 2.3 secs**, and may slightly vary based on the number of active applications and system load, also the inferencing speed of the llm.\n\n## Requirements\n\n### UV Package Manager\nThis MCP server requires [UV](https://github.com/astral-sh/uv), a fast Python package manager. \n\n```bash\npip install uv\n```\n\nFor detailed installation instructions, see the [UV documentation](https://github.com/astral-sh/uv#installation).",
+  "name": "Darbot-Windows-MCP",
+  "version": "0.1.0",
+  "description": "Lightweight MCP Server that enables Claude to interact with Windows OS - Darbot Labs Edition",
+  "long_description": "Darbot-Windows MCP is a lightweight, open-source project that enables seamless integration between AI agents and the Windows operating system. Acting as an MCP server bridges the gap between LLMs and the Windows operating system, allowing agents to perform tasks such as **file navigation, application control, UI interaction, QA testing,** and more.\n\n## Key Features\n\n- **Seamless Windows Integration**: Interacts natively with Windows UI elements, opens apps, controls windows, simulates user input, and more.\n- **Use Any LLM (Vision Optional)**: Unlike many automation tools, Darbot-Windows MCP doesn't rely on any traditional computer vision techniques or specific fine-tuned models; it works with any LLMs, reducing complexity and setup time.\n- **Rich Toolset for UI Automation**: Includes tools for basic keyboard, mouse operation and capturing window/UI state.\n- **Lightweight & Open-Source**: Minimal dependencies and easy setup with full source code available under MIT license.\n- **Customizable & Extendable**: Easily adapt or extend tools to suit your unique automation or AI integration needs.\n- **Real-Time Interaction**: Typical latency between actions (e.g., from one mouse click to the next) ranges from **1.5 to 2.3 secs**, and may slightly vary based on the number of active applications and system load, also the inferencing speed of the llm.\n\n## Requirements\n\n### UV Package Manager\nThis MCP server requires [UV](https://github.com/astral-sh/uv), a fast Python package manager. \n\n```bash\npip install uv\n```\n\nFor detailed installation instructions, see the [UV documentation](https://github.com/astral-sh/uv#installation).",
   "author": {
-    "name": "CursorTouch",
-    "email": "jeogeoalukka@gmail.com"
+    "name": "Darbot Labs",
+    "email": "labs@darbot.io"
   },
-  "homepage": "https://github.com/CursorTouch",
-  "documentation": "https://github.com/CursorTouch/Windows-MCP",
+  "homepage": "https://github.com/darbotlabs",
+  "documentation": "https://github.com/darbotlabs/Darbot-Windows-MCP",
   "icon": "./assets/logo.png",
   "screenshots": [
     "./assets/screenshots",
@@ -35,8 +35,8 @@
   },
   "tools": [
     {
-      "name": "App-Tool",
-      "description": "Manages Windows applications through launch, resize, and window switching operations."
+      "name": "Launch-Tool",
+      "description": "Launch an application from the Windows Start Menu by name (e.g., \"notepad\", \"calculator\", \"chrome\")"
     },
     {
       "name": "Powershell-Tool",
@@ -47,12 +47,20 @@
       "description": "Capture comprehensive desktop state including focused/opened applications, interactive UI elements (buttons, text fields, menus), informative content (text, labels, status), and scrollable areas. Optionally includes visual screenshot when use_vision=True. Essential for understanding current desktop context and available UI interactions."
     },
     {
+      "name": "Clipboard-Tool",
+      "description": "Copy text to clipboard or retrieve current clipboard content. Use \"copy\" mode with text parameter to copy, \"paste\" mode to retrieve."
+    },
+    {
       "name": "Click-Tool",
       "description": "Click on UI elements at specific coordinates. Supports left/right/middle mouse buttons and single/double/triple clicks. Use coordinates from State-Tool output."
     },
     {
       "name": "Type-Tool",
       "description": "Type text into input fields, text areas, or focused elements. Set clear=True to replace existing text, False to append. Click on target element coordinates first."
+    },
+    {
+      "name": "Switch-Tool",
+      "description": "Switch to a specific application window (e.g., \"notepad\", \"calculator\", \"chrome\", etc.) and bring to foreground."
     },
     {
       "name": "Scroll-Tool",
@@ -67,8 +75,12 @@
       "description": "Move mouse cursor to specific coordinates without clicking. Useful for hovering over elements or positioning cursor before other actions."
     },
     {
-      "name": "Shortcut-Tool",
-      "description": "Execute keyboard shortcuts using key combinations. Pass keys as list (e.g., 'ctrl'+'c' for copy, 'alt'+'tab' for app switching, 'win'+'r' for Run dialog, 'win' is for opening the start menu)."
+      "name": "Shorcut-Tool",
+      "description": "Execute keyboard shortcuts using key combinations. Pass keys as list (e.g., ['ctrl', 'c'] for copy, ['alt', 'tab'] for app switching, ['win', 'r'] for Run dialog)."
+    },
+    {
+      "name":"Key-Tool",
+      "description":"Press individual keyboard keys. Supports special keys like 'enter', 'escape', 'tab', 'space', 'backspace', 'delete', arrow keys 'up', 'down', 'left', 'right'), function keys ('f1'-'f12')."
     },
     {
       "name":"Wait-Tool",
@@ -89,11 +101,12 @@
     "windows",
     "automation",
     "ai",
-    "mcp"
+    "mcp",
+    "darbot"
   ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/CursorTouch/Windows-MCP"
+    "url": "https://github.com/darbotlabs/Darbot-Windows-MCP"
   }
 }

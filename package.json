@@ -1,0 +1,52 @@
+{
+  "name": "@darbotlabs/darbot-windows-mcp",
+  "version": "0.1.0",
+  "description": "Lightweight MCP Server for interacting with Windows Operating System - Darbot Labs Edition",
+  "main": "main.py",
+  "bin": {
+    "darbot-windows-mcp": "./main.py"
+  },
+  "scripts": {
+    "install": "python -m venv .venv && .venv\\Scripts\\pip install uv && .venv\\Scripts\\uv sync",
+    "start": "uv run main.py",
+    "test": "uv run python -c 'from fastmcp import FastMCP; print(\"FastMCP imported successfully\")'",
+    "build": "uv build",
+    "publish:npm": "npm publish --access public",
+    "publish:all": "npm run build && npm run publish:npm"
+  },
+  "keywords": [
+    "mcp",
+    "windows",
+    "automation",
+    "ai",
+    "llm",
+    "desktop",
+    "darbot",
+    "python"
+  ],
+  "author": "Darbot Labs <labs@darbot.io>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darbotlabs/Darbot-Windows-MCP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/darbotlabs/Darbot-Windows-MCP/issues"
+  },
+  "homepage": "https://github.com/darbotlabs/Darbot-Windows-MCP#readme",
+  "engines": {
+    "python": ">=3.13"
+  },
+  "os": [
+    "win32"
+  ],
+  "files": [
+    "main.py",
+    "src/",
+    "pyproject.toml",
+    "manifest.json",
+    "README.md",
+    "LICENSE",
+    "uv.lock"
+  ]
+}

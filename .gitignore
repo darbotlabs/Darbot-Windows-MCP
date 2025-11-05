@@ -169,8 +169,16 @@ user_data
 *.dxt
 
 node_modules
-notebooks
+notebook.ipynb
 
-.mcpregistry_github_token
-.mcpregistry_registry_token
-sandbox
+# Additional ignores for bug bash improvements
+logs/
+configs/
+temp/
+tmp/
+*.backup.json
+test_results/
+test_output/
+
+# Docker
+.dockerignore

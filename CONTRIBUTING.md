@@ -1,6 +1,6 @@
-# Contributing to Windows-MCP
+# Contributing to Darbot-Windows-MCP
 
-Thank you for your interest in contributing to Windows-MCP! This document provides guidelines and instructions for contributing to this project.
+Thank you for your interest in contributing to Darbot-Windows-MCP! This document provides guidelines and instructions for contributing to this project.
 
 ## Table of Contents
 
@@ -26,7 +26,7 @@ Thank you for your interest in contributing to Windows-MCP! This document provid
 
 ### Development Environment
 
-Windows-MCP requires:
+Darbot-Windows-MCP requires:
 - Python 3.13 or later
 
 ### Installation from Source
@@ -143,4 +143,4 @@ If you need help with your contribution:
 - Reach out to the maintainers
 - Check existing code for examples
 
-Thank you for contributing to Windows-MCP!
+Thank you for contributing to Darbot-Windows-MCP!
